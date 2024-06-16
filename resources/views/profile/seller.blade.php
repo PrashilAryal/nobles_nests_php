@@ -1,20 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron">
-    <div style="display: flex;">
-        <h2>Welcome, {{ Auth::user()->first_name }}!</h2>
-    </div>
-    <h1 class="display-4">Welcome to NobleNests</h1>
-    <p class="lead">Your premium real estate destination.</p>
+<h1>Seller Profile</h1>
+<p>Profile information and seller-specific features.</p>
 
-    <!-- Role-specific content -->
-    @if (Auth::user()->type == 'seller')
-    <p>You have X properties listed for sale.</p>
-    @elseif (Auth::user()->type == 'buyer')
-    <p>Here are the properties you have shown interest in.</p>
-    @endif
-</div>
+<form action="{{ route('propertiesAdd') }}" method="GET">
+    @csrf
+    <button type="submit" class="btn btn-success">Add Property</button>
+</form>
+
 <div class="container">
     <h1>Properties</h1>
     <div class="row">
@@ -36,14 +30,7 @@
                     <p class="card-text"><strong>Parking:</strong> {{ $property->feature->parking }}</p>
                     <p class="card-text"><strong>Type:</strong> {{ $property->feature->type }}</p>
                     @endif
-                    <a href="{{ route('properties.show', $property->id) }}" class="btn btn-primary">View Details</a>
-                    <!-- @if(Auth::check() && Auth::id() == $property->user_id)
-                    <a href="{{ route('propertiesEdit', $property->id) }}" class="btn btn-secondary">Edit</a>
-                    @endif -->
-                    @if(Auth::check() && \App\Models\UserProperty::where('user_id', Auth::id())->where('property_id',
-                    $property->id)->exists())
-                    <a href="{{ route('propertiesEdit', $property->id) }}" class="btn btn-secondary">Edit</a>
-                    @endif
+                    <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>

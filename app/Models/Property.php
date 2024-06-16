@@ -10,13 +10,9 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'total_price', 'booking_price', 'city', 'state', 'district', 'feature_id', 'is_sold', 'is_deleted'
+        'title', 'total_price', 'booking_price', 'city', 'state', 'district', 'area', 'bedrooms', 'kitchens', 'parking', 'type', 'user_id', 'is_sold', 'is_deleted'
     ];
 
-    public function feature()
-    {
-        return $this->hasOne(Feature::class);
-    }
 
     public function photos()
     {
@@ -26,5 +22,9 @@ class Property extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+    public function userProperties()
+    {
+        return $this->hasMany(UserProperty::class);
     }
 }
