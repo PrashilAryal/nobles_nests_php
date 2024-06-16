@@ -21,12 +21,19 @@ return new class extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('district');
-            $table->unsignedBigInteger('feature_id')->nullable();
+            // Start: Features
+            $table->float('area');
+            $table->integer('bedrooms');
+            $table->integer('kitchens');
+            $table->string('parking');
+            $table->string('type');
+            // End: Features
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('is_sold')->default(false);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
 
-            $table->foreign('feature_id')->references('id')->on('features')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
