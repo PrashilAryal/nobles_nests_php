@@ -5,8 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noble Nests</title>
-    <!-- <link rel="stylesheet" href="{{ asset('/css/app.css') }}"> -->
     <link rel="stylesheet" href="{{ url('../../../../css/app.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+   <!-- Vendor CSS Files -->
+   <link href="{{ asset('vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
     @vite(['resources/js/app.js'])
 </head>
 
