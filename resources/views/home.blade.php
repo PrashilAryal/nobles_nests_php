@@ -29,13 +29,11 @@
                     <p class="card-text"><strong>City:</strong> {{ $property->city }}</p>
                     <p class="card-text"><strong>State:</strong> {{ $property->state }}</p>
                     <p class="card-text"><strong>District:</strong> {{ $property->district }}</p>
-                    @if($property->feature)
-                    <p class="card-text"><strong>Area:</strong> {{ $property->feature->area }} sq.ft</p>
-                    <p class="card-text"><strong>Bedrooms:</strong> {{ $property->feature->bedrooms }}</p>
-                    <p class="card-text"><strong>Kitchens:</strong> {{ $property->feature->kitchens }}</p>
-                    <p class="card-text"><strong>Parking:</strong> {{ $property->feature->parking }}</p>
-                    <p class="card-text"><strong>Type:</strong> {{ $property->feature->type }}</p>
-                    @endif
+                    <p class="card-text"><strong>Area:</strong> {{ $property->area }} sq.ft</p>
+                    <p class="card-text"><strong>Bedrooms:</strong> {{ $property->bedrooms }}</p>
+                    <p class="card-text"><strong>Kitchens:</strong> {{ $property->kitchens }}</p>
+                    <p class="card-text"><strong>Parking:</strong> {{ $property->parking }}</p>
+                    <p class="card-text"><strong>Type:</strong> {{ $property->type }}</p>
                     <a href="{{ route('properties.show', $property->id) }}" class="btn btn-primary">View Details</a>
                     <!-- @if(Auth::check() && Auth::id() == $property->user_id)
                     <a href="{{ route('propertiesEdit', $property->id) }}" class="btn btn-secondary">Edit</a>
