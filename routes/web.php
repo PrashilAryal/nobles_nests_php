@@ -28,7 +28,7 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index');
 // Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 // Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+// Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 // End: User Controller Routes
 
@@ -56,4 +56,16 @@ Route::post('/properties', [PropertyController::class, 'store'])->name('properti
 Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('propertiesEdit')->middleware('auth');
 Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update')->middleware('auth');
 Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
+Route::patch('properties/{property}/destroy', [PropertyController::class, 'destroy'])->name('properties.destroy')->middleware('auth');
 // End: Property Controller Routes
+
+// Route::get('/users/details{user}', [UserController::class, 'show'])->name('user.show')->middleware('auth');
+
+// Start: User Controller Routes
+Route::get('/users', [UserController::class, 'addUserView'])->name('usersAdd')->middleware('auth');
+Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('auth');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('userEdit')->middleware('auth');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::patch('users/{users}/destroy', [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
+// End: User Controller Routes

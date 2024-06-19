@@ -4,14 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     // Fetches all users and displays them in a view (users.index)
     public function index()
     {
-        $users = User::all();
+        $users = User::where('is_deleted', 0)->get();
         return view('users.index', compact('users'));
+    }
+
+    public function show(User $user)
+    {
+        $user = User::find($user->id);
+        return view('pages.userDetails', compact('user'));
     }
 
     // Displays the form to create a new user (users.create)
@@ -41,6 +52,7 @@ class UserController extends Controller
             'phone_number' => $request->input('phone_number'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'is_deleted' => false,
         ]);
 
         $user->save();
@@ -52,39 +64,59 @@ class UserController extends Controller
     // Displays the form to edit an existing user (users.edit)
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('modals.editUser', compact('user'));
     }
 
-    // Validates the form data and updates the user information
+    // Update the specified user in storage.
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'type' => 'required|in:buyer,seller',
-            'address' => 'required',
-            'phone_number' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|min:8',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            // 'type' => 'required|in:buyer,seller,admin',
+            // 'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'address' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            // 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            // 'password' => 'nullable|string|min:8|confirmed',
         ]);
-
+        // if ($request->filled('password')) {
+        //     $data['password'] = Hash::make($request->input('password'));
+        // }
+        // $user->update($data);
         $user->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'type' => $request->input('type'),
-            'address' => $request->input('address'),
-            'phone_number' => $request->input('phone_number'),
-            'email' => $request->input('email'),
-            'password' => $request->filled('password') ? bcrypt($request->input('password')) : $user->password,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+        // $data = $request->except(['password']);
+        // if ($request->hasFile('profile_photo')) {
+        //     $data['profile_photo'] = $request->file('profile_photo')->store('profile_photos', 'public');
+        // }
+
+
+
+        return redirect()->route('users.show', $user->id)->with('success', 'User updated successfully.');
     }
 
     // Deletes a user
-    public function destroy(User $user)
+    // public function destroy(User $user)
+    // {
+    //     $user->delete();
+    //     return redirect()->route('users.index')->with('success', 'User deleted successfully');
+    // }
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        $user = User::find($id);
+
+        if ($user) {
+            $user->is_deleted = 1;
+            $user->save();
+            return redirect()->route('users.index')->with('success', 'User marked as deleted.');
+        } else {
+            return redirect()->route('users.index')->with('error', 'User not found.');
+        }
     }
 }

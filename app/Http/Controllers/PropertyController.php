@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
+    // Constructor to apply auth middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -135,8 +140,8 @@ class PropertyController extends Controller
         //     return redirect()->route('home')->with('error', 'Unauthorized access.');
         // }
         $userProperty = UserProperty::where('user_id', Auth::id())
-                                    ->where('property_id', $property->id)
-                                    ->first();
+            ->where('property_id', $property->id)
+            ->first();
 
         if (!$userProperty) {
             return redirect()->route('home')->with('error', 'Unauthorized access.');
@@ -180,8 +185,16 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Property $property)
+    public function destroy(Request $request, Property $property)
     {
-        //
+        $userProperty = UserProperty::where('user_id', Auth::id())->where('property_id', $property->id)->first();
+
+        if (!$userProperty) {
+            return redirect()->route('profile')->with('error', 'Unauthorized access.');
+        }
+
+        $property->update(['is_deleted' => 1]);
+
+        return redirect()->route('profile')->with('success', 'Property deleted successfully.');
     }
 }
