@@ -28,6 +28,9 @@
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
+                    @if($property->photos->count() > 0)
+                    <img class="card-img-top" src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}" alt="Card image cap">
+                    @endif
                     <h5 class="card-title">{{ $property->title }}</h5>
                     <p class="card-text"><strong>Price:</strong> ${{ number_format($property->total_price, 2) }}</p>
                     <p class="card-text"><strong>Booking Price:</strong>
@@ -44,12 +47,10 @@
                     @if(Auth::check() && \App\Models\UserProperty::where('user_id', Auth::id())->where('property_id',
                     $property->id)->exists())
                     <a href="{{ route('propertiesEdit', $property->id) }}" class="btn btn-secondary">Edit</a>
-                    <form action="{{ route('properties.destroy', $property->id) }}" method="POST"
-                        style="display:inline-block;">
+                    <form action="{{ route('properties.destroy', $property->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-danger"
-                            onclick="return confirm('Are you sure you want to delete this property?');">Delete</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this property?');">Delete</button>
                     </form>
                     @endif
                 </div>

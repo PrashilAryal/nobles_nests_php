@@ -10,7 +10,7 @@ class Photo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'path_name', 'property_id', 'is_deleted'
+        'path_name', 'property_id', 'is_deleted', 'type'
     ];
 
     public function property()

@@ -13,8 +13,14 @@ class ProfileController extends Controller
     public function showProfile()
     {
 
+
         if (Auth::user()->type == 'seller') {
-            $properties = Property::all()->where('user_id', Auth::user()->id)->where('is_deleted', 0);
+            $userId = Auth::user()->id;
+            $properties = Property::whereHas('userProperties', function ($query) use ($userId) {
+                $query->where('user_id', $userId)->where('is_deleted', 0);
+            })->with('photos')->get();
+            // dd($properties);
+            // $properties = Property::all()->where('user_id', Auth::user()->id)->where('is_deleted', 0);
             // return view('profile.seller');
             return view('profile.seller', compact('properties'));
         } elseif (Auth::user()->type == 'buyer') {

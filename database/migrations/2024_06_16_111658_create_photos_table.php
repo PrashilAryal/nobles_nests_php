@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('path_name');
+            $table->string('type');
             $table->unsignedBigInteger('property_id');
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();

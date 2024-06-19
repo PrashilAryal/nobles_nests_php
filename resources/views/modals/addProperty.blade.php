@@ -9,7 +9,7 @@
 </div>
 @endif
 
-<form action="{{ route('properties.store') }}" method="POST">
+<form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="title">Title</label>
@@ -54,6 +54,10 @@
     <div class="form-group">
         <label for="type">Type</label>
         <input type="text" class="form-control" id="type" name="type" required>
+    </div>
+    <div class="form-group">
+        <label for="type">Thumbnail Image</label>
+        <input type="file" class="form-control" id="primary_image" name="primary_image" required>
     </div>
     <button type="submit" class="btn btn-primary">Add Property</button>
 </form>

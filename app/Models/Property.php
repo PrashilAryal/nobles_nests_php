@@ -16,7 +16,7 @@ class Property extends Model
 
     public function photos()
     {
-        return $this->hasMany(Photo::class);
+        return $this->hasMany(Photo::class)->where('is_deleted', 0);
     }
 
     public function bookings()

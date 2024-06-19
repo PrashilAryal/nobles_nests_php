@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Models\UserProperty;
+use App\Models\Photo;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
@@ -42,6 +43,8 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
+
         $request->validate([
             'title' => 'required|string|max:255',
             'total_price' => 'required|numeric',
@@ -81,6 +84,23 @@ class PropertyController extends Controller
             'property_id' => $property->id,
             'is_deleted' => false,
         ]);
+
+        if ($request->hasFile('primary_image')) {
+            $image = $request->file('primary_image');
+            $fileName = date('dmY') . time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path("/uploads"), $fileName);
+            $response["primary_image"] = $fileName;
+            Photo::create([
+                'path_name' => $fileName,
+                'property_id' => $property->id,
+                'type' => 'primary',
+                'is_deleted' => false,
+            ]);
+        }
+
+        //create the photos
+
 
         return redirect()->back()->with('success', 'Property added successfully.');
     }
@@ -187,13 +207,18 @@ class PropertyController extends Controller
      */
     public function destroy(Request $request, Property $property)
     {
+        // dd($property);
         $userProperty = UserProperty::where('user_id', Auth::id())->where('property_id', $property->id)->first();
+        $propertyPhoto = Photo::all()->where('property_id', $property->id);
 
         if (!$userProperty) {
             return redirect()->route('profile')->with('error', 'Unauthorized access.');
         }
 
         $property->update(['is_deleted' => 1]);
+        foreach ($propertyPhoto as $photo) {
+            $photo->update(['is_deleted' => 1]);
+        }
 
         return redirect()->route('profile')->with('success', 'Property deleted successfully.');
     }
