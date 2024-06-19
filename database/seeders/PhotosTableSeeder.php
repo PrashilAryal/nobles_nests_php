@@ -19,6 +19,7 @@ class PhotosTableSeeder extends Seeder
             [
                 'path_name' => 'path/to/photo1.jpg',
                 'property_id' => 1,
+                'type' => 'primary',
                 'is_deleted' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -26,6 +27,7 @@ class PhotosTableSeeder extends Seeder
             [
                 'path_name' => 'path/to/photo2.jpg',
                 'property_id' => 2,
+                'type' => 'secondary',
                 'is_deleted' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
