@@ -196,7 +196,22 @@ class PropertyController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('pages.propertyDetails')->with('success', 'Property updated successfully.');
+        $photoDetail = Photo::where('property_id', $property->id)->where('type', 'primary')->first();
+        // $response = $request->all();
+        // dd($response);
+        if ($request->hasFile('primary_image')) {
+            $image =  $request->file('primary_image');
+            $fileName = date('dmY') . time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path("/uploads"), $fileName);
+            $response["primary_image"] = $fileName;
+        }
+        // dd($response);
+        $photoDetail->update([
+            'path_name' => $response["primary_image"],
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Property updated successfully.');
     }
 
     /**

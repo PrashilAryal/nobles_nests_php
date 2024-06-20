@@ -10,7 +10,7 @@
         {{ session('success') }}
     </div>
     @endif
-    <form method="POST" action="{{ route('properties.update', $property->id) }}">
+    <form method="POST" action="{{ route('properties.update', $property->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -57,7 +57,21 @@
             <label for="type">Type</label>
             <input type="text" class="form-control" id="type" name="type" value="{{ $property->type }}" required>
         </div>
+
+        <div class="form-group">
+            <label for="type">Thumbnail Image</label>
+            @if($property->photos->count() > 0)
+            <img class="card-img-top" id="output" src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}" alt="Card image cap">
+            @endif
+            <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
+        </div>
         <button type="submit" class="btn btn-primary">Update Property</button>
     </form>
 </div>
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
 @endsection
