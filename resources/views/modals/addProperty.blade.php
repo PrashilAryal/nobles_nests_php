@@ -57,8 +57,17 @@
     </div>
     <div class="form-group">
         <label for="type">Thumbnail Image</label>
-        <input type="file" class="form-control" id="primary_image" name="primary_image" required>
+
+        <img class="card-img-top" id="output" src="" alt="Card image cap">
+
+        <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
     </div>
-    <button type="submit" class="btn btn-primary">Add Property</button>
+    <button type=" submit" class="btn btn-primary">Add Property</button>
 </form>
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
 @endsection
