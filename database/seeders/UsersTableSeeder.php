@@ -18,14 +18,14 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'first_name' => 'John',
-                'last_name' => 'Doe',
-                'type' => 'buyer',
+                'first_name' => 'Prashil',
+                'last_name' => 'Aryal',
+                'type' => 'admin',
                 'profile_photo' => '/userpanel/avatar.png',
                 'address' => '123 Main St',
                 'phone_number' => '1234567890',
-                'email' => 'john.doe@example.com',
-                'password' => Hash::make('password'),
+                'email' => 'prashil@gmail.com',
+                'password' => Hash::make('Password123!'),
                 'is_deleted' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
