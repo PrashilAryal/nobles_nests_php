@@ -101,6 +101,13 @@
     background-color: var(--danger-color);
     color: #ffffff;
 }
+.button-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border: none;
+}
 /* Button */
 
 /* Property Card */
@@ -121,9 +128,16 @@
 .property-card .property-card-body {
     /* padding: 10px; */
 }
-.property-card .property-card-body .property-card-title {
-    font-size: 16px;
+.property-card .property-card-body .property-card-title a {
+    font-size: 18px;
     font-weight: 600;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+.property-card .property-card-body .property-card-title a:hover {
+    color: var(--primary-color-dark);
+    cursor: pointer;
+    font-size: 18px;
 }
 .property-card .property-card-body .property-card-details {
     display: flex;
@@ -206,4 +220,28 @@
 .hero-banner-search {
     display: flex;
 }
+.search-container {
+    width: 400px;
+}
+.search-input {
+    border: 1px solid white;
+    padding: 5px;
+    width: 100%;
+}
+.search-input:focus-visible {
+    border: 1px solid white !important;
+}
+/* .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+.search-container button:hover {
+    background: #ccc;
+} */
 /* Hero Banner */

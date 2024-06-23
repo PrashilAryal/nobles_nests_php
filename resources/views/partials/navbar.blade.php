@@ -1,11 +1,9 @@
 <nav class="navbar navbar-expand-lg nav-bar">
     <a class="navbar-brand" href="{{ url('/') }}">NobleNests</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent"
-        style="margin-left: 80px">
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent" style="margin-left: 80px">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}">Home</a>
@@ -14,8 +12,7 @@
                 <a class="nav-link" href="{{ url('/') }}">Contact</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Property
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
