@@ -1,0 +1,402 @@
+/*------/ Title /------*/
+.title-wrap {
+    padding-bottom: 4rem;
+}
+
+.title-a {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.title-link {
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding-top: 1.2rem;
+}
+
+.title-link a {
+    text-decoration: none;
+    color: #313131;
+}
+
+.title-link span {
+    font-size: 20px;
+    padding-left: 4px;
+    vertical-align: middle;
+}
+
+.title-box-d {
+    padding-bottom: 1.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.title-box-d .title-d {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.title-box-d .title-d:after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    background-color: var(--primary-color);
+    bottom: 20px;
+    left: 0;
+}
+.carousel-pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.carousel-pagination .swiper-pagination-bullet {
+    width: 18px;
+    height: 10px;
+    background-color: #555;
+    margin: 0 4px;
+    border-radius: 0;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.carousel-pagination .swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+    width: 36px;
+}
+
+/*--------------------------------------------------------------
+# Card General
+--------------------------------------------------------------*/
+@media (max-width: 767px) {
+    .card-box,
+    .card-box-b,
+    .card-box-c,
+    .card-box-d {
+        margin-bottom: 2.5rem;
+    }
+}
+
+.card-box span,
+.card-box-b span,
+.card-box-c span,
+.card-box-d span {
+    line-height: 0;
+}
+
+@media (min-width: 768px) {
+    .grid .card-box,
+    .grid .card-box-b,
+    .grid .card-box-c,
+    .grid .card-box-d {
+        margin-bottom: 2.5rem;
+    }
+}
+
+.card-box,
+.card-box-b,
+.card-box-d {
+    position: relative;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-box .img-a,
+.card-box .img-b,
+.card-box .img-a,
+.card-box .img-b {
+    transition: 0.8s all ease-in-out;
+}
+
+@media (min-width: 768px) {
+    .card-box:hover .img-a,
+    .card-box:hover .img-b,
+    .card-box-b:hover .img-a,
+    .card-box-b:hover .img-b {
+        transform: scale(1.2);
+    }
+}
+
+@media (min-width: 768px) {
+    .card-box .price,
+    .card-box-b .price {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-box .price,
+    .card-box-b .price {
+        font-size: 1rem;
+    }
+}
+
+.card-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.card-shadow {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-shadow:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.2) 27%,
+        rgba(0, 0, 0, 0.65) 90%
+    );
+}
+
+/*======================================
+//--//-->   PROPERTY - CARD-A
+======================================*/
+@media (min-width: 768px) {
+    .card-box:hover .card-overlay-content {
+        bottom: 60px;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 768px) {
+    .card-box:hover .card-overlay-content {
+        bottom: 60px;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 992px) {
+    .card-box:hover .card-overlay-content {
+        bottom: 64px;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-box:hover .card-body {
+        padding-bottom: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-box .card-overlay-content {
+        bottom: 65px;
+    }
+
+    .card-box .card-body {
+        padding-bottom: 1rem;
+    }
+}
+
+.card-overlay-content {
+    transition: all 0.5s ease-in;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    z-index: 2;
+}
+.card-detail {
+    padding-left: 1rem;
+}
+
+@media (min-width: 768px) {
+    .card-overlay-content {
+        bottom: -20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-overlay-content {
+        bottom: 0px;
+    }
+}
+
+.card-header {
+    padding: 0 1rem;
+}
+
+.card-header .card-title {
+    color: #ffffff;
+    margin-bottom: 0;
+    padding-bottom: 0.7rem;
+}
+
+@media (min-width: 768px) {
+    .card-header .card-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-header .card-title {
+        font-size: 2rem;
+    }
+}
+
+.card-header .card-title a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.card-body {
+    z-index: 2;
+    transition: all 0.5s ease-in;
+    padding: 0rem 1rem 2rem 1rem;
+}
+
+.card-body .price-box {
+    padding-bottom: 0.5rem;
+}
+
+.price {
+    color: #ffffff;
+    padding: 0.6rem 0.8rem;
+    /* border: 2px solid #2eca6a; */
+    border: 2px solid green;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-decoration: none !important;
+    color: white;
+}
+
+.card-footer-a {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: var(--primary-color);
+}
+
+.card-info {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0.5rem 0;
+    height: 65px;
+}
+.card-info li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-info .card-info-title {
+    font-size: 1rem;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .card-info .card-info-title {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-info .card-info-title {
+        font-size: 1rem;
+    }
+}
+
+.card-info li span {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+    .card-info li span {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-info li span {
+        font-size: 1rem;
+    }
+}
+
+/*------/ Property Grid /-----*/
+.property-grid .grid-option {
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.property-grid .grid-option .custom-select {
+    border-radius: 0;
+    width: 200px;
+    border-color: #313131;
+}
+
+.property-grid .grid-option .custom-select:hover,
+.property-grid .grid-option .custom-select:active,
+.property-grid .grid-option .custom-select:focus {
+    border-color: #313131;
+}
+
+.property-grid .grid-option .custom-select option {
+    border-color: #313131;
+}
+
+/*------/ Property Single /-----*/
+.gallery-property {
+    margin-bottom: 3rem;
+}
+
+.property-price {
+    margin: 0 auto;
+}
+
+.property-price .card-header-c {
+    padding: 0;
+}
+
+.link-a {
+    text-decoration: none;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .link-a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .link-a {
+        font-size: 1rem;
+    }
+}
+
+.link-a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.link-a span {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+@media (min-width: 768px) {
+    .link-a span {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .link-a span {
+        font-size: 18px;
+    }
+}

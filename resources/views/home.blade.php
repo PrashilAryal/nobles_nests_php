@@ -6,8 +6,18 @@
     <div class="hero-banner-info">
         <p>Find your premium real estate destination.</p>
         <div class="hero-banner-search">
-            <input type="text" placeholder="Search">
-            <input type="button" value="Search" class="button button-primary">
+            <!-- <input type="text" placeholder="Search"> -->
+            <!-- <input type="button" value="Search" class="button button-primary"> -->
+            <div class="search-container">
+                <form action="#" class="d-flex">
+                    <input type="text" placeholder="Search.." name="search" class="search-input">
+                    <button type="submit" class="button-search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -26,7 +36,7 @@
         @foreach($properties as $property)
         @if(!$property->is_deleted)
         <div class="p-3 col-3 col-md-3 col-sm-6">
-            <div class="property-card ">
+            <div class="property-card">
                 <!-- <div class="property-card"> -->
                 <div class="card-img">
                     @if($property->photos->count() > 0)
@@ -35,7 +45,11 @@
                 </div>
                 <div class="property-card-container">
                     <div class="property-card-body">
-                        <h5 class="property-card-title">{{ $property->title }}</h5>
+                        <h5 class="property-card-title">
+                            <a href="{{ route('properties.show', $property->id) }}">
+                                {{ $property->title }}
+                            </a>
+                        </h5>
                         <div class="property-card-details row">
                             <div class="property-card-info col-7">
                                 <p class="card-text"><strong>District:</strong> {{ $property->district }}</p>
@@ -49,7 +63,6 @@
                                 <p class="card-text">
                                     ${{ number_format($property->booking_price, 2) }}</p>
                                 <button class="button button-primary">Book Now</button>
-
                             </div>
                         </div>
                     </div>
@@ -67,19 +80,12 @@
                             <p>Area (sq.ft)</p>
                         </div>
                     </div>
-                    <div class="property-card-buttons">
-                        <div class="property-card-view-details">
-                            <a href="{{ route('properties.show', $property->id) }}" class="button button-primary text-decoration-none">View
-                                Details</a>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
         @endif
         @endforeach
     </div>
-
+    @include('partials.propertyCarousel')
 </div>
 @endsection
