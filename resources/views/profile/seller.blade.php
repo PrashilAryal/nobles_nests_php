@@ -6,12 +6,18 @@
         <div class="user-profile-image">
             <img src="{{ auth()->user()->profile_photo }}" alt="" width="100px" height="100px">
         </div>
-        <div class="profile-header">
+        <div class="profile-header mb-5">
             <p>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
-            <form action="{{ route('userEdit', auth()->user()->id) }}" method="GET">
-                @csrf
-                <button type="submit" class="button button-primary">Edit</button>
-            </form>
+            <div class="d-flex justify-content-between">
+                <form action="{{ route('userEdit', auth()->user()->id) }}" method="GET" class="mx-2">
+                    @csrf
+                    <button type="submit" class="button button-primary">Edit</button>
+                </form>
+                <form action="{{ route('logout') }}" method="POST" class="mx-2">
+                    @csrf
+                    <button type="submit" class="button button-primary">Logout</button>
+                </form>
+            </div>
         </div>
         <div class="user-profile-details">
             <p>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
@@ -55,7 +61,10 @@
                         </div>
                         <div class="property-card-container">
                             <div class="property-card-body">
-                                <h5 class="property-card-title">{{ $property->title }}</h5>
+                                <h5 class="property-card-title">
+                                    <a href="{{ route('properties.show', $property->id) }}"
+                                        class="text-decoration-none">{{ $property->title }}</a>
+                                </h5>
                                 <div class="property-card-details row">
                                     <div class="property-card-info col-7">
                                         <p class="card-text"><strong>District:</strong> {{ $property->district }}</p>
@@ -66,9 +75,9 @@
                                         </p>
                                     </div>
                                     <div class="property-card-price col-5">
-                                        <p class="card-text">
+                                        <!-- <p class="card-text">
                                             ${{ number_format($property->booking_price, 2) }}</p>
-                                        <button class="button button-primary">Book Now</button>
+                                        <button class="button button-primary">Book Now</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -87,23 +96,25 @@
                                 </div>
                             </div>
                             <div class="property-card-buttons">
-                                <div class="property-card-view-details">
-                                    <a href="{{ route('properties.show', $property->id) }}"
-                                        class="button button-primary text-decoration-none">View
+                                <!-- <div class="property-card-view-details">
+                                    <a href="{{ route('properties.show', $property->id) }}" class="button button-primary text-decoration-none">View
                                         Details</a>
-                                </div>
+                                </div> -->
                                 @if(Auth::check() && \App\Models\UserProperty::where('user_id',
                                 Auth::id())->where('property_id',
                                 $property->id)->exists())
-                                <div class="property-card-action-buttons">
+                                <div class="property-card-action-buttons edit-icon mt-3">
                                     <a href="{{ route('propertiesEdit', $property->id) }}"
-                                        class="button button-secondary text-decoration-none">Edit</a>
-                                    <form action="{{ route('properties.destroy', $property->id) }}" method="POST"
+                                        class=" text-decoration-none">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form action="{{ route('propertyDestroy', $property->id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="submit" class="button button-danger"
-                                            onclick="return confirm('Are you sure you want to delete this property?');">Delete</button>
+                                        <button type="submit" class="delete-icon"
+                                            onclick="return confirm('Are you sure you want to delete this property?');"><i
+                                                class="bi bi-trash"></i></button>
                                     </form>
                                     @endif
                                 </div>

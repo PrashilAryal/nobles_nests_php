@@ -45,13 +45,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // public function properties()
+    // {
+    //     return $this->belongsToMany(Property::class, 'user_property');
+    // }
+    // public function properties()
+    // {
+    //     return $this->hasMany(Property::class);
+    // }
     public function properties()
     {
         return $this->belongsToMany(Property::class, 'user_property');
     }
 
+
     public function bookings()
     {
         return $this->hasMany(Booking::class, 'buyer_id');
+    }
+    public function userProperties()
+    {
+        return $this->hasMany(UserProperty::class);
     }
 }

@@ -111,8 +111,9 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
+    public function show($id)
     {
+        $property = Property::with('users')->findOrFail($id);
         return view('pages.propertyDetails', compact('property'));
     }
     public function addPropertyView()
@@ -197,6 +198,7 @@ class PropertyController extends Controller
         ]);
 
         $photoDetail = Photo::where('property_id', $property->id)->where('type', 'primary')->first();
+        // dd($photoDetail);
         // $response = $request->all();
         // dd($response);
         if ($request->hasFile('primary_image')) {
@@ -206,7 +208,8 @@ class PropertyController extends Controller
             $image->move(public_path("/uploads"), $fileName);
             $response["primary_image"] = $fileName;
         }
-        // dd($response);
+        // dd("Res: ", $response["primary_image"]);
+        // dd("Req: ", $request);
         $photoDetail->update([
             'path_name' => $response["primary_image"],
         ]);
@@ -220,7 +223,7 @@ class PropertyController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Property $property)
+    public function propertyDestroy(Request $request, Property $property)
     {
         // dd($property);
         $userProperty = UserProperty::where('user_id', Auth::id())->where('property_id', $property->id)->first();

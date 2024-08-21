@@ -1,0 +1,98 @@
+:root {
+    --primary-color-dark: #2e3b52;
+    --primary-color-light: #437c8b;
+    --secondary-color: #9a7450;
+    --tertiary-color: #bbe2e2;
+    --card-color: #eff4f7;
+    --danger-color: #dc3545;
+}
+.stripe_container {
+    background-color: var(--primary-color-dark);
+    color: #ffffff;
+    /* height: 100vh; */
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 5px 40px;
+    width: fit-content;
+}
+.stripe_container div {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.stripe_container .alert-success {
+    background-color: rgb(33 248 52 / 50%);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+.stripe_container .stripe_header {
+    display: flex;
+    justify-content: center;
+}
+.stripe_container span {
+    justify-content: start;
+}
+.stripe_container span a {
+    color: #ffffff;
+}
+.stripe_container span:hover {
+    cursor: pointer;
+}
+.stripe_container .stripe_header .stripe_title {
+}
+.stripe_container .stripe_property_title {
+}
+.stripe_container .stripe_property_title h3 {
+}
+.stripe_container .stripe_amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--tertiary-color);
+}
+.stripe_container .stripe_button {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0.2rem 0.7rem !important;
+    width: fit-content !important;
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+.stripe_container .stripe_button .stripe-button-el span {
+    background-image: none;
+    background-color: var(--primary-color-dark) !important;
+}
+.stripe_container .stripe_button .stripe-button-el span:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.stripe_container .stripe_button form {
+}
+.stripe_container .stripe_property_list {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.stripe_container .stripe_property_list table thead tr,
+.stripe_container .stripe_property_list table tbody tr {
+    color: #ffffff;
+}
+
+.stripe_container .stripe_property_list .table tr {
+    border-bottom: 1px solid var(--primary-color-light);
+}
+
+.stripe_container .stripe_property_list .table tr .td-start {
+    border: none;
+}
+
+.stripe_container .stripe_property_list .table tr .td-end {
+    display: flex !important;
+    justify-content: end !important;
+    border: none;
+}

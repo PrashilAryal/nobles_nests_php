@@ -1,0 +1,270 @@
+.contactSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background: #2eca6a;
+    background-color: #2eca6a; */
+    box-sizing: border-box;
+}
+.contactSection::before {
+    content: "";
+    position: absolute;
+    /* top: 0; */
+    left: 0;
+    width: 50%;
+    /* height: 100%; */
+    /* background: #fff38e; */
+    /* background: #eef2e6; */
+}
+.contactContainer {
+    position: relative;
+    min-width: 1100px;
+    min-height: 550px;
+    display: flex;
+    z-index: 1000;
+    /* background-color: #fff; */
+}
+.contactContainer .contactInfo {
+    position: absolute;
+    top: 40px;
+    width: 350px;
+    height: calc(100% - 80px);
+    background-color: var(--primary-color-dark);
+    z-index: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+.contactContainer .contactInfo h2 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+}
+.contactContainer .contactInfo ul.info {
+    position: relative;
+    margin: 20px 0;
+}
+.contactContainer .contactInfo ul.info li {
+    position: relative;
+    list-style: none;
+    display: flex;
+    margin: 20px 0;
+    cursor: pointer;
+    align-items: flex-start;
+}
+.contactContainer .contactInfo ul.info li span:nth-child(1) {
+    width: 30px;
+    min-width: 30px;
+}
+.contactContainer .contactInfo ul.info li span:nth-child(1) img {
+    max-width: 100%;
+    filter: invert(1);
+}
+.contactContainer .contactInfo ul.info li span:nth-child(2) {
+    color: #fff;
+    margin-left: 10px;
+    font-weight: 300;
+}
+.contactContainer .contactInfo ul.contactSocialMedia {
+    position: relative;
+    display: flex;
+}
+.contactContainer .contactInfo ul.contactSocialMedia li {
+    list-style: none;
+    margin-right: 15px;
+}
+.contactContainer .contactInfo ul.contactSocialMedia li a {
+    text-decoration: none;
+}
+.contactContainer .contactInfo ul.contactSocialMedia li a img {
+    filter: invert(1);
+}
+.contactContainer .contactForm {
+    position: absolute;
+    padding: 70px 50px;
+    padding-left: 250px;
+    margin-left: 150px;
+    width: calc(100% - 150px);
+    height: 100%;
+    background: #fff;
+    box-shadow: 0 50px 50px rgba(0, 0, 0, 0.25);
+}
+.contactContainer .contactForm h2 {
+    color: #0f3959;
+    font-size: 24px;
+    font-weight: 500;
+}
+.contactContainer .contactForm .contactFormBox {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 30px;
+}
+.contactContainer .contactForm .contactFormBox .contactInputBox {
+    position: relative;
+    margin-bottom: 35px;
+}
+.contactContainer .contactForm .contactFormBox .contactInputBox.w50 {
+    width: 47%;
+}
+.contactContainer .contactForm .contactFormBox .contactInputBox.w100 {
+    width: 100%;
+}
+.contactContainer .contactForm .contactFormBox .contactInputBox input,
+.contactContainer .contactForm .contactFormBox .contactInputBox textarea {
+    width: 100%;
+    resize: none;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: 300;
+    color: #333;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #777;
+}
+.contactContainer .contactForm .contactFormBox .contactInputBox textarea {
+    height: 120px;
+}
+.contactContainer .contactForm .contactFormBox .contactInputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    pointer-events: none;
+    font-size: 18px;
+    font-weight: 300;
+    transition: 0.3s;
+}
+.contactContainer
+    .contactForm
+    .contactFormBox
+    .contactInputBox
+    input:focus
+    ~ span,
+.contactContainer
+    .contactForm
+    .contactFormBox
+    .contactInputBox
+    input:valid
+    ~ span,
+.contactContainer
+    .contactForm
+    .contactFormBox
+    .contactInputBox
+    textarea:focus
+    ~ span,
+.contactContainer
+    .contactForm
+    .contactFormBox
+    .contactInputBox
+    textarea:valid
+    ~ span {
+    transform: translateY(-20px);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #095a55;
+    font-weight: 500;
+}
+.contactContainer
+    .contactForm
+    .contactFormBox
+    .contactInputBox
+    input[type="submit"] {
+    position: relative;
+    cursor: pointer;
+    background: #2eca6a;
+    color: #fff;
+    border: none;
+    max-width: 150px;
+    padding: 8px;
+}
+.contactContainer
+    .contactForm
+    .contactFormBox
+    .contactInputBox
+    input[type="submit"]:hover {
+    background: #0d948b;
+}
+
+@media (max-width: 1200px) {
+    .contactContainer {
+        width: 90%;
+        min-width: auto;
+        margin: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+    .contactContainer .contactInfo {
+        top: 0;
+        height: 550px;
+        position: relative;
+        box-shadow: none;
+    }
+    .contactContainer .contactForm {
+        position: relative;
+        width: calc(100% - 350px);
+        padding-left: 0;
+        margin-left: 0;
+        padding: 40px;
+        height: 550px;
+        box-shadow: none;
+    }
+}
+@media (max-width: 991px) {
+    .contactSection {
+        background: var(--primary-color-light);
+    }
+    .contactSection::before {
+        display: none;
+    }
+    .contactContainer {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .contactContainer .contactForm {
+        width: 100%;
+        height: auto;
+    }
+    .contactContainer .contactInfo {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+    }
+    .contactContainer .contactInfo ul.contactSocialMedia {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media (max-width: 600px) {
+    .contactContainer .contactForm {
+        padding: 25px;
+    }
+    .contactContainer .contactInfo {
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contactContainer .contactInfo ul.contactSocialMedia {
+        margin-top: 40px;
+    }
+    .contactContainer .contactForm .contactFormBox .contactInputBox.w50 {
+        width: 100%;
+    }
+}
+
+.messageSentSuccess {
+    background-color: #2eca6a;
+    color: white;
+    font-weight: 500;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -31,6 +31,22 @@ class PhotosTableSeeder extends Seeder
                 'is_deleted' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'path_name' => 'path/to/photo1.jpg',
+                'property_id' => 3,
+                'type' => 'primary',
+                'is_deleted' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'path_name' => 'path/to/photo2.jpg',
+                'property_id' => 4,
+                'type' => 'primary',
+                'is_deleted' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

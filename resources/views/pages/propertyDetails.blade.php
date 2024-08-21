@@ -1,20 +1,323 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>{{ $property->title }}</h1>
-    <p><strong>Price:</strong> ${{ number_format($property->total_price, 2) }}</p>
-    <p><strong>Booking Price:</strong> ${{ number_format($property->booking_price, 2) }}</p>
-    <p><strong>City:</strong> {{ $property->city }}</p>
-    <p><strong>State:</strong> {{ $property->state }}</p>
-    <p><strong>District:</strong> {{ $property->district }}</p>
-    <p><strong>Area:</strong> {{ $property->area }} sq.ft</p>
-    <p><strong>Bedrooms:</strong> {{ $property->bedrooms }}</p>
-    <p><strong>Kitchens:</strong> {{ $property->kitchens }}</p>
-    <p><strong>Parking:</strong> {{ $property->parking }}</p>
-    <p><strong>Type:</strong> {{ $property->type }}</p>
-    @if(Auth::check() && Auth::id() == $property->user_id)
-    <a href="{{ route('propertiesEdit', $property->id) }}" class="btn btn-secondary">Edit</a>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">{{ $property->title }}</h1>
+                    <span class="color-text-a">{{ $property->city }}, {{ $property->district }}</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="property-grid.html">Properties</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{ $property->title }}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+<!-- ======= Property Single ======= -->
+<section class="property-single nav-arrow-b">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="property-single-carousel" class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="carousel-item-b swiper-slide">
+                            <!-- <img src="assets/img/slide-1.jpg" alt=""> -->
+                            @if($property->photos->count() > 0)
+                            <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}"
+                                alt="Card image cap" width="100%" height="100%">
+                            @endif
+                        </div>
+                        <div class="carousel-item-b swiper-slide">
+                            <!-- <img src="assets/img/slide-2.jpg" alt=""> -->
+                            @if($property->photos->count() > 0)
+                            <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}"
+                                alt="Card image cap" width="100%" height="100%">
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="property-single-carousel-pagination carousel-pagination"></div>
+            </div>
+            @if(Auth::check() && Auth::id() == $property->user_id)
+            <div style="width: fit-content;">
+                <a href="{{ route('propertiesEdit', $property->id) }}" class="button button-primary">Edit</a>
+            </div>
+            @endif
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row justify-content-between">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="property-price d-flex foo">
+                            <div class="card-header-c">
+                                <span class="bi bi-cash"></span>
+                                <div class="card-box-ico d-flex">
+                                    <span>$</span>
+                                    <span>{{ number_format($property->total_price, 2) }}</span>
+                                </div>
+                                @if($property->is_sold)
+                                <button class="button button-primary mt-2">
+                                    <span class="button-text">Booked</span>
+                                </button>
+                                @endif
+                                @if(!$property->is_sold)
+                                <button class="button button-primary mt-2">
+                                    <a href="{{ url('stripe', $property->id) }}" class="button-text">Book
+                                        Now</a>
+                                </button>
+                                @endif
+                                <!-- <div class="card-title-c align-self-center">
+                                    <h5 class="title-c">15000</h5>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="property-summary mt-5">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d section-t4">
+                                        <h3 class="title-d">Quick Summary</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="summary-list">
+                                <ul class="list">
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Property ID:</strong>
+                                        <span>1134</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Total Price:</strong>
+                                        <span>${{ number_format($property->total_price, 2) }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Booking Price:</strong>
+                                        <span>${{ number_format($property->booking_price, 2) }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Location:</strong>
+                                        <span>{{ $property->city }}, {{ $property->district }}, {{ $property->state }}
+                                        </span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Property Type:</strong>
+                                        <span>{{ $property->type }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Status:</strong>
+                                        <span>Sale</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Area:</strong>
+                                        <span>{{ $property->area }}
+                                            <sup>sq.ft.</sup>
+                                        </span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Beds:</strong>
+                                        <span>{{ $property->bedrooms }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Baths:</strong>
+                                        <span>{{ $property->bathrooms }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Kitchen:</strong>
+                                        <span>{{ $property->kitchens }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Parking:</strong>
+                                        <span>{{ $property->parking }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-7 section-md-t3">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Property Description</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property-description">
+                            <p class="description color-text-a">
+                                {{ $property->description }}
+                            </p>
+                        </div>
+                        <div class="row section-t3">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Amenities</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amenities-list color-text-a">
+                            <ul class="list-a no-margin">
+                                <li>Balcony</li>
+                                <li>Outdoor Kitchen</li>
+                                <li>Cable Tv</li>
+                                <li>Deck</li>
+                                <li>Tennis Courts</li>
+                                <li>Internet</li>
+                                <li>Parking</li>
+                                <li>Sun Room</li>
+                                <li>Concrete Flooring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 mt-5">
+                <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-video-tab" data-bs-toggle="pill" href="#pills-video"
+                            role="tab" aria-controls="pills-video" aria-selected="true">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-plans-tab" data-bs-toggle="pill" href="#pills-plans" role="tab"
+                            aria-controls="pills-plans" aria-selected="false">Floor Plans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-map-tab" data-bs-toggle="pill" href="#pills-map" role="tab"
+                            aria-controls="pills-map" aria-selected="false">Ubication</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-video" role="tabpanel"
+                        aria-labelledby="pills-video-tab">
+                        <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
+                        <img src="assets/img/plan2.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834"
+                            width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @if ($property->users->isNotEmpty())
+        <div class="row mt-5" style="margin: 20px 80px;">
+            <div class="section-t3 col-12">
+                <div class="">
+                    <div class="title-box-d">
+                        <h3 class="title-d">Contact Agent</h3>
+                    </div>
+                </div>
+            </div>
+            @foreach ($property->users as $user)
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="agent_profile">
+                        <img src="{{ $user->profile_photo }}" alt="" class="img-fluid" width="260px" height="260px">
+                    </div>
+                    <!-- <img src="assets/img/agent-4.jpg" alt="" class="img-fluid"> -->
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="property-agent">
+                        <h3 class="title-agent">{{ $user->first_name }} {{ $user->last_name }}</h3>
+                        <p class="color-text-a">
+                            {{ $user->first_name }} {{ $user->last_name }} is a very reputed Property seller in
+                            Noble Nests.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="d-flex justify-content-between">
+                                <strong>Phone:</strong>
+                                <span class="color-text-a">{{ $user->phone_number }}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Email:</strong>
+                                <span class="color-text-a">{{ $user->email }}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Address:</strong>
+                                <span class="color-text-a">{{ $user->address }}</span>
+                            </li>
+                            <!-- <li class="d-flex justify-content-between">
+                                    <strong>Skype:</strong>
+                                    <span class="color-text-a">nabin.ge</span>
+                                </li> -->
+                        </ul>
+                        <div class="socials-a">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="bi bi-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="bi bi-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="bi bi-instagram" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="bi bi-linkedin" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-12 col-lg-4">
+                        <div class="property-contact">
+                            <form class="form-a">
+                                <div class="row">
+                                    <div class="col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <button type="submit" class="btn btn-a">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div> -->
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @else
+    <p>This property does not have a seller associated with it.</p>
     @endif
-</div>
+</section><!-- End Property Single-->
 @endsection
