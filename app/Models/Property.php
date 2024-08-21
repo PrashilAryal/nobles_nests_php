@@ -27,4 +27,17 @@ class Property extends Model
     {
         return $this->hasMany(UserProperty::class);
     }
+    // public function seller()
+    // {
+    //     return $this->belongsToMany(User::class, 'user_properties', 'property_id', 'user_id')->where('type', 'seller');
+    // }
+
+    // public function users()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_property');
+    }
 }

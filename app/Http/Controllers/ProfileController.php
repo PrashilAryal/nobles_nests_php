@@ -42,6 +42,33 @@ class ProfileController extends Controller
             abort(403, 'Unauthorized action.');
         }
     }
+    public function showAdminPanel()
+    {
+        $users = User::all();
+        $data = User::find(Auth::user()->id);
+        if (Auth::user()->type == 'seller') {
+            return view('dashboard.seller');
+        } elseif (Auth::user()->type == 'admin') {
+            return view('admin.adminPanel', compact('data', 'users'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
+    public function showAdminDashboard()
+    {
+
+        $adminObj = User::find(Auth::user()->id);
+        $data = User::find(Auth::user()->id);
+        // if($adminObj->chef_role == 'admin'){
+        $users = User::all();
+        $properties = Property::all();
+        // return view('adminpanel', ['chefs'=>$item], ['data'=>$adminObj], ['recipes'=>$recipeList]);
+        return view('admin.adminDashboard', compact('users', 'data', 'properties'));
+
+        //    }else{
+        //         return view('adminlogin');
+        //    }  
+    }
 
     public function showProperties()
     {

@@ -29,6 +29,20 @@ class UserPropertyTableSeeder extends Seeder
                 'is_deleted' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'user_id' => 1,
+                'property_id' => 3,
+                'is_deleted' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 3,
+                'property_id' => 4,
+                'is_deleted' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

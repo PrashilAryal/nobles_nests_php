@@ -1,4 +1,4 @@
-<section class="section-property section-t8">
+<section class="section-property section-t8 mt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -12,24 +12,29 @@
             <div class="swiper-wrapper">
                 @foreach($properties as $property)
                 @if(!$property->is_deleted)
-                <div class="carousel-item-b swiper-slide">
+                <div class="carousel-item-b swiper-slide ">
                     <div class="card-box card-shadow">
                         <div class="img-box">
                             <img src="{{asset('/uploads/230620241719133208.jpg')}}" alt="" class="img-a img-fluid">
                         </div>
-                        <div class="card-overlay">
+                        <div class="card-overlay ">
                             <div class="card-overlay-content">
                                 <div class="card-detail">
                                     <div class="card-header">
-                                        <h2 class="card-title">
-                                            <a href="{{ route('properties.show', $property->id) }}">{{ $property->title }}</a>
-                                        </h2>
+                                        <h3 class="card-title">
+                                            <a
+                                                href="{{ route('properties.show', $property->id) }}">{{ $property->title }}</a>
+                                        </h3>
                                     </div>
                                     <div>
-                                        <p class="button button-secondary">
-                                            Book
-                                            $ {{ number_format($property->booking_price, 2) }}
-                                        </p>
+                                        <h4 class="text-white fw-bold"> $
+                                            {{ number_format($property->booking_price, 2) }}
+                                        </h4>
+                                        <!-- <Button class="button button-secondary">
+                                            <span class="button-text">
+                                                Book
+                                            </span>
+                                        </Button> -->
                                         <a href="{{ route('properties.show', $property->id) }}" class="link-a">View
                                             Details
                                             <span class="bi bi-chevron-right"></span>

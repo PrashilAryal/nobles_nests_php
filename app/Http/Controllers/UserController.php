@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -70,6 +71,7 @@ class UserController extends Controller
     // Update the specified user in storage.
     public function update(Request $request, User $user)
     {
+        // dd($user);
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -78,26 +80,29 @@ class UserController extends Controller
             'address' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
             // 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            // 'password' => 'nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8',
         ]);
         // if ($request->filled('password')) {
         //     $data['password'] = Hash::make($request->input('password'));
         // }
         // $user->update($data);
-        $user->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'address' => $request->address,
-            'phone_number' => $request->phone_number,
-        ]);
+        $data = $request->only(['first_name', 'last_name', 'address', 'phone_number']);
+
+        if ($request->filled('password')) {
+            $data['password'] = bcrypt($request->input('password'));
+        }
+        $user->update($data);
+        // $user->update([
+        //     'first_name' => $request->first_name,
+        //     'last_name' => $request->last_name,
+        //     'address' => $request->address,
+        //     'phone_number' => $request->phone_number,
+        // ]);
 
         // $data = $request->except(['password']);
         // if ($request->hasFile('profile_photo')) {
         //     $data['profile_photo'] = $request->file('profile_photo')->store('profile_photos', 'public');
         // }
-
-
-
         return redirect()->route('users.show', $user->id)->with('success', 'User updated successfully.');
     }
 
@@ -110,13 +115,19 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        $users = User::all();
+        $data = User::find(Auth::user()->id);
 
         if ($user) {
             $user->is_deleted = 1;
             $user->save();
-            return redirect()->route('users.index')->with('success', 'User marked as deleted.');
+            // return redirect()->route('users.index')->with('success', 'User marked as deleted.');
+            // return redirect()->route('admin.viewUsers')->compact('users', 'data')->with('success', 'User marked as deleted.');
+            return view('admin.viewUsers', compact('users', 'data'))->with('success', 'User marked as deleted.');
         } else {
-            return redirect()->route('users.index')->with('error', 'User not found.');
+            // return redirect()->route('users.index')->with('error', 'User not found.');
+            // return redirect()->route('admin.viewUsers')->compact('users', 'data')->with('error', 'User not found.');
+            return view('admin.viewUsers', compact('users', 'data'))->with('error', 'User not found.');
         }
     }
 }

@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +19,12 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+// START: Page Routes
 Route::get('/', [AuthController::class, 'home'])->name('home')->middleware('auth');
-
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/contact', [AuthController::class, 'contact'])->name('contact');
+Route::get('/all-properties', [AuthController::class, 'properties'])->name('properties');
+Route::get('/about-us', [AuthController::class, 'about'])->name('about');
+// END: Page Routes
 
 // Start: User Controller Routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -49,23 +52,44 @@ Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile
 Route::get('/dashboard', [ProfileController::class, 'showDashboard'])->name('dashboard')->middleware('auth');
 // End: Profile routes
 
-
 // Start: Property Controller Routes
 Route::get('/properties', [PropertyController::class, 'addPropertyView'])->name('propertiesAdd')->middleware('auth');
 Route::post('/properties', [PropertyController::class, 'store'])->name('properties.store')->middleware('auth');
 Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('propertiesEdit')->middleware('auth');
 Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update')->middleware('auth');
-Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
-Route::patch('properties/{property}/destroy', [PropertyController::class, 'destroy'])->name('properties.destroy')->middleware('auth');
+Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('properties.show');
+Route::patch('properties/{property}/delete', [PropertyController::class, 'propertyDestroy'])->name('propertyDestroy')->middleware('auth');
 // End: Property Controller Routes
 
 // Route::get('/users/details{user}', [UserController::class, 'show'])->name('user.show')->middleware('auth');
 
-// Start: User Controller Routes
+// Start: User Controller Routes - Self
 Route::get('/users', [UserController::class, 'addUserView'])->name('usersAdd')->middleware('auth');
 Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('auth');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('userEdit')->middleware('auth');
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::patch('users/{users}/destroy', [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
-// End: User Controller Routes
+// End: User Controller Routes - Self
+
+// START: Message
+Route::post('/send-message', [MessageController::class, 'send_message'])->name('send_message');
+Route::get('/view-message', [MessageController::class, 'view_message']);
+Route::get('/delete-message/{id}', [MessageController::class, 'delete_message']);
+// END: Message
+
+// START: Admin Control
+Route::get('/adminDashboard', [ProfileController::class, 'showAdminDashboard'])->name('adminDashboard')->middleware('auth');
+
+Route::get('/view-users', [AuthController::class, 'view_user']);
+Route::get('/view-properties', [AuthController::class, 'view_properties']);
+Route::patch('properties/{property}/destroy', [AuthController::class, 'adminDestroyProperty'])->name('properties.adminDestroyProperty')->middleware('auth');
+
+Route::get('/transactions', [AuthController::class, 'transactions'])->name('transactions');
+// END: Admin Control
+
+// START: Stripe Payment
+// Route::get('products/{id}', [PropertyController::class, 'show']);
+Route::get('stripe/{id}', [StripeController::class, 'stripe']);
+Route::post('stripe/{id}', [StripeController::class, 'stripePost'])->name('stripe.post');
+// END: Stripe Payment

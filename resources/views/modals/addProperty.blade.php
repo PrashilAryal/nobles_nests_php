@@ -1,73 +1,90 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Add Property</h1>
+<section class="contactSection">
+    <div class="contactContainer propertyContainer">
+        <!-- <h1 class="propertyTitle">Add Property</h1> -->
+        <img src="{{ asset('../images/house.png') }}" alt="" class="propertyIcon">
 
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
 
-<form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title" required>
+        <form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data" class="propertyForm">
+            @csrf
+            <div class="contactForm propertyFormContent">
+                <h2>Add a Property</h2>
+                @if(Session::has('success'))
+                <div class="messageSentSuccess">
+                    <span class="">{{Session::get('success')}}</span><br>
+                </div>
+                @endif
+                {{-- @if($errors->any())
+                        <span>{{$error}}</span>
+                @endif --}}
+                <div class="contactFormBox propertyFormBox">
+                    <!-- <div class="form-group"> -->
+                    <div class="contactInputBox w50">
+                        <input type="text" id="title" name="title" autocomplete="off" required>
+                        <span>Title</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="type" id="type" name="type" autocomplete="off" required>
+                        <span>Type</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="type" id="total_price" name="total_price" autocomplete="off" required>
+                        <span>Total Price</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="booking_price" name="booking_price" autocomplete="off" required>
+                        <span>Booking Price</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="city" name="city" autocomplete="off" required>
+                        <span>City</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="state" name="state" autocomplete="off" required>
+                        <span>State</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="district" name="district" autocomplete="off" required>
+                        <span>District</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="number" id="area" name="area" autocomplete="off" required>
+                        <span>Area</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="number" id="bedrooms" name="bedrooms" autocomplete="off" required>
+                        <span>Bedrooms</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="number" id="kitchens" name="kitchens" autocomplete="off" required>
+                        <span>Kitchens</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="number" id="parking" name="parking" autocomplete="off" required>
+                        <span>Parking</span>
+                    </div>
+                    <div class="contactInputBox w100">
+                        <label for="type">Thumbnail Image</label>
+                        <img class="card-img-top" id="output" src="" alt="Property Thumbnail">
+                        <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
+                    </div>
+                    <button type=" submit" class="button button-primary">Add Property</button>
+                </div>
+            </div>
+        </form>
+        <script>
+            var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+            };
+        </script>
     </div>
-    <div class="form-group">
-        <label for="total_price">Total Price</label>
-        <input type="number" class="form-control" id="total_price" name="total_price" required>
-    </div>
-    <div class="form-group">
-        <label for="booking_price">Booking Price</label>
-        <input type="number" class="form-control" id="booking_price" name="booking_price" required>
-    </div>
-    <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city" name="city" required>
-    </div>
-    <div class="form-group">
-        <label for="state">State</label>
-        <input type="text" class="form-control" id="state" name="state" required>
-    </div>
-    <div class="form-group">
-        <label for="district">District</label>
-        <input type="text" class="form-control" id="district" name="district" required>
-    </div>
-    <div class="form-group">
-        <label for="area">Area</label>
-        <input type="number" class="form-control" id="area" name="area" required>
-    </div>
-    <div class="form-group">
-        <label for="bedrooms">Bedrooms</label>
-        <input type="number" class="form-control" id="bedrooms" name="bedrooms" required>
-    </div>
-    <div class="form-group">
-        <label for="kitchens">Kitchens</label>
-        <input type="number" class="form-control" id="kitchens" name="kitchens" required>
-    </div>
-    <div class="form-group">
-        <label for="parking">Parking</label>
-        <input type="number" class="form-control" id="parking" name="parking" required>
-    </div>
-    <div class="form-group">
-        <label for="type">Type</label>
-        <input type="text" class="form-control" id="type" name="type" required>
-    </div>
-    <div class="form-group">
-        <label for="type">Thumbnail Image</label>
-
-        <img class="card-img-top" id="output" src="" alt="Card image cap">
-
-        <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
-    </div>
-    <button type=" submit" class="btn btn-primary">Add Property</button>
-</form>
-<script>
-    var loadFile = function(event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
+</section>
 @endsection
