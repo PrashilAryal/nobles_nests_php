@@ -75,6 +75,11 @@
                         <img class="card-img-top" id="output" src="" alt="Property Thumbnail">
                         <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
                     </div>
+                    <!-- Multiple Photos Input -->
+                    <div class="contactInputBox w100">
+                        <label for="photos">Additional Photos</label>
+                        <input type="file" class="form-control" id="photos" name="photos[]" multiple>
+                    </div>
                     <button type=" submit" class="button button-primary">Add Property</button>
                 </div>
             </div>

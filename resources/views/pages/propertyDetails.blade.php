@@ -36,20 +36,11 @@
             <div class="col-lg-8">
                 <div id="property-single-carousel" class="swiper">
                     <div class="swiper-wrapper">
+                        @foreach($property->photos as $photo)
                         <div class="carousel-item-b swiper-slide">
-                            <!-- <img src="assets/img/slide-1.jpg" alt=""> -->
-                            @if($property->photos->count() > 0)
-                            <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}"
-                                alt="Card image cap" width="100%" height="100%">
-                            @endif
+                            <img src="{{ asset('/uploads/' . $photo->path_name) }}" alt="Property image" width="100%" height="100%">
                         </div>
-                        <div class="carousel-item-b swiper-slide">
-                            <!-- <img src="assets/img/slide-2.jpg" alt=""> -->
-                            @if($property->photos->count() > 0)
-                            <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}"
-                                alt="Card image cap" width="100%" height="100%">
-                            @endif
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="property-single-carousel-pagination carousel-pagination"></div>
