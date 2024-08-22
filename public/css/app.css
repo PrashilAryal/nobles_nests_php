@@ -125,6 +125,8 @@
     display: inline-block;
     position: relative;
     transition: 0.5s;
+    color: white;
+    text-decoration: none;
 }
 /* .button:hover {
     cursor: pointer;
@@ -362,6 +364,29 @@
 } */
 
 /* Nest  */
+#player {
+    max-width: 100% !important;
+    background-color: var(--primary-color-dark) !important;
+}
+.player {
+    max-width: 100% !important;
+
+    background-color: var(--primary-color-light) !important;
+}
+.property-details-img {
+    height: calc(100vh - 160px) !important;
+}
+.property-single .title-box-d.amenities {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.amenities-list {
+    background-color: gainsboro;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0;
+}
 .property-card {
     background-color: #fff;
     border-radius: 10px;
@@ -1100,7 +1125,7 @@ footer .credits {
 
 .card-box-ico {
     padding: 0.4rem;
-    border: 5px solid #2eca6a;
+    /* border: 5px solid #2eca6a; */
 }
 
 .card-box-ico span {
@@ -1288,6 +1313,8 @@ footer .credits {
     line-height: 2;
     padding: 0;
     list-style: none;
+    margin-bottom: 0;
+    padding-left: 200px;
 }
 
 .list-a li {
@@ -1379,7 +1406,6 @@ footer .credits {
 /* END: Quick Summary */
 /* START: Contact Agent */
 .agent_profile {
-    background-color: var(--primary-color-dark);
     width: fit-content !important;
     padding: 4px 12px;
     border-radius: 4px;

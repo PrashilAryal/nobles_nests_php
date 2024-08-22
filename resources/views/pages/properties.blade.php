@@ -50,7 +50,19 @@
                             <div class="property-card-price col-5">
                                 <p class="card-text">
                                     ${{ number_format($property->booking_price, 2) }}</p>
-                                <button class="button button-primary">Book Now</button>
+                                <!-- <button class="button button-primary">
+                                    Book Now
+                                </button> -->
+                                @if($property->is_sold)
+                                <p class="badge bg-primary" style="margin: auto; margin-left:12px;">Booked</p>
+                                @endif
+                                @if(!$property->is_sold)
+                                <button class="button button-primary" style="margin:auto;">
+                                    <a href="{{ url('stripe', $property->id) }}"
+                                        style="text-decoration: none; color: white">Book
+                                        Now</a>
+                                </button>
+                                @endif
                             </div>
                         </div>
                     </div>

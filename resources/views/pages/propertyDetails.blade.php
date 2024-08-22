@@ -33,17 +33,17 @@
 <section class="property-single nav-arrow-b">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div id="property-single-carousel" class="swiper">
                     <div class="swiper-wrapper">
-                        <div class="carousel-item-b swiper-slide">
+                        <div class="carousel-item-b swiper-slide property-details-img">
                             <!-- <img src="assets/img/slide-1.jpg" alt=""> -->
                             @if($property->photos->count() > 0)
                             <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}"
                                 alt="Card image cap" width="100%" height="100%">
                             @endif
                         </div>
-                        <div class="carousel-item-b swiper-slide">
+                        <div class="carousel-item-b swiper-slide property-details-img">
                             <!-- <img src="assets/img/slide-2.jpg" alt=""> -->
                             @if($property->photos->count() > 0)
                             <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}"
@@ -60,143 +60,211 @@
             </div>
             @endif
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row justify-content-between">
-                    <div class="col-md-5 col-lg-4">
-                        <div class="property-price d-flex foo">
-                            <div class="card-header-c">
-                                <span class="bi bi-cash"></span>
-                                <div class="card-box-ico d-flex">
-                                    <span>$</span>
-                                    <span>{{ number_format($property->total_price, 2) }}</span>
-                                </div>
-                                @if($property->is_sold)
-                                <button class="button button-primary mt-2">
-                                    <span class="button-text">Booked</span>
-                                </button>
-                                @endif
-                                @if(!$property->is_sold)
-                                <button class="button button-primary mt-2">
-                                    <a href="{{ url('stripe', $property->id) }}" class="button-text">Book
-                                        Now</a>
-                                </button>
-                                @endif
-                                <!-- <div class="card-title-c align-self-center">
-                                    <h5 class="title-c">15000</h5>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="property-summary mt-5">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="title-box-d section-t4">
-                                        <h3 class="title-d">Quick Summary</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="summary-list">
-                                <ul class="list">
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Property ID:</strong>
-                                        <span>1134</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Total Price:</strong>
-                                        <span>${{ number_format($property->total_price, 2) }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Booking Price:</strong>
-                                        <span>${{ number_format($property->booking_price, 2) }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Location:</strong>
-                                        <span>{{ $property->city }}, {{ $property->district }}, {{ $property->state }}
-                                        </span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Property Type:</strong>
-                                        <span>{{ $property->type }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Status:</strong>
-                                        <span>Sale</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Area:</strong>
-                                        <span>{{ $property->area }}
-                                            <sup>sq.ft.</sup>
-                                        </span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Beds:</strong>
-                                        <span>{{ $property->bedrooms }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Baths:</strong>
-                                        <span>{{ $property->bathrooms }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Kitchen:</strong>
-                                        <span>{{ $property->kitchens }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Parking:</strong>
-                                        <span>{{ $property->parking }}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-lg-7 section-md-t3">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="title-box-d">
-                                    <h3 class="title-d">Property Description</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="property-description">
-                            <p class="description color-text-a">
-                                {{ $property->description }}
-                            </p>
-                        </div>
-                        <div class="row section-t3">
-                            <div class="col-sm-12">
-                                <div class="title-box-d">
-                                    <h3 class="title-d">Amenities</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="amenities-list color-text-a">
-                            <ul class="list-a no-margin">
-                                <li>Balcony</li>
-                                <li>Outdoor Kitchen</li>
-                                <li>Cable Tv</li>
-                                <li>Deck</li>
-                                <li>Tennis Courts</li>
-                                <li>Internet</li>
-                                <li>Parking</li>
-                                <li>Sun Room</li>
-                                <li>Concrete Flooring</li>
-                            </ul>
+        <div class="row mt-5">
+            <div class="col-sm-12 col-12">
+                <div class="row section-t3">
+                    <div class="col-sm-12">
+                        <div class="title-box-d amenities">
+                            <h3 class="title-d">Amenities</h3>
                         </div>
                     </div>
                 </div>
+                <div class="amenities-list color-text-a">
+                    <ul class="list-a no-margin">
+                        <li>Balcony</li>
+                        <li>Outdoor Kitchen</li>
+                        <li>Cable Tv</li>
+                        <li>Deck</li>
+                        <li>Tennis Courts</li>
+                        <li>Internet</li>
+                        <li>Parking</li>
+                        <li>Sun Room</li>
+                        <li>Concrete Flooring</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-10 offset-md-1 mt-5">
-                <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+        </div>
+        <div class="row justify-content-between mt-3">
+            <div class="col-md-5 col-lg-12">
+                <div class="property-price d-flex foo">
+                    <div class="card-header-c">
+                        <div class="card-box-ico d-flex">
+                            <span class="bi bi-cash mx-2 " style="color: green;"></span>
+                            <span>$</span>
+                            <span>{{ number_format($property->total_price, 2) }}</span>
+                            @if($property->is_sold)
+                            <p class="badge bg-primary" style="margin: auto; margin-left:12px;">Booked</p>
+                            @endif
+                            @if(!$property->is_sold)
+                            <button class="button button-primary mx-3" style="margin:auto;">
+                                <a href="{{ url('stripe', $property->id) }}" class="button-text">Book
+                                    Now</a>
+                            </button>
+                            @endif
+                        </div>
+
+                        <!-- <div class="card-title-c align-self-center">
+                                    <h5 class="title-c">15000</h5>
+                                </div> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="property-summary col-5">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box-d section-t4">
+                            <h3 class="title-d">Quick Summary</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-list">
+                    <table class="table">
+                        <!-- <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead> -->
+                        <tbody>
+                            <tr>
+                                <td>Property ID</td>
+                                <td style="text-align: end;">1134</td>
+                            </tr>
+                            <tr>
+                                <td>Total Price</td>
+                                <td style="text-align: end;">${{ number_format($property->total_price, 2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Booking Price</td>
+                                <td style="text-align: end;">${{ number_format($property->booking_price, 2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td style="text-align: end;">{{ $property->city }}, {{ $property->district }},
+                                    {{ $property->state }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Property Type</td>
+                                <td style="text-align: end;">{{ $property->type }}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td style="text-align: end;">Sale</td>
+                            </tr>
+                            <tr>
+                                <td>Area</td>
+                                <td style="text-align: end;">{{ $property->area }}
+                                    <sup>sq.ft.</sup>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Beds</td>
+                                <td style="text-align: end;">{{ $property->bedrooms }}</td>
+                            </tr>
+                            <tr>
+                                <td>Baths</td>
+                                <td style="text-align: end;">{{ $property->bathrooms }}</td>
+                            </tr>
+                            <tr>
+                                <td>Kitchen</td>
+                                <td style="text-align: end;">{{ $property->kitchens }}</td>
+                            </tr>
+                            <tr>
+                                <td>Parking</td>
+                                <td style="text-align: end;">{{ $property->parking }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <ul class="list">
+                        <li class="d-flex justify-content-between">
+                            <strong>Property ID:</strong>
+                            <span>1134</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Total Price:</strong>
+                            <span>${{ number_format($property->total_price, 2) }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Booking Price:</strong>
+                            <span>${{ number_format($property->booking_price, 2) }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Location:</strong>
+                            <span>{{ $property->city }}, {{ $property->district }}, {{ $property->state }}
+                            </span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Property Type:</strong>
+                            <span>{{ $property->type }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Status:</strong>
+                            <span>Sale</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Area:</strong>
+                            <span>{{ $property->area }}
+                                <sup>sq.ft.</sup>
+                            </span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Beds:</strong>
+                            <span>{{ $property->bedrooms }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Baths:</strong>
+                            <span>{{ $property->bathrooms }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Kitchen:</strong>
+                            <span>{{ $property->kitchens }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <strong>Parking:</strong>
+                            <span>{{ $property->parking }}</span>
+                        </li>
+                    </ul> -->
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="col-sm-12">
+                    <div class="title-box-d">
+                        <h3 class="title-d">Property Description</h3>
+                    </div>
+                </div>
+                <div class="property-description">
+                    <p class="description color-text-a">
+                        {{ $property->description }}
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has
+                        survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- </div> -->
+        <div class="row mt-5">
+            <div class="col-8">
+                <ul class="nav nav-pills-a nav-pills mb-3 section-t3 display-flex justify-content-center" id="pills-tab"
+                    role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-video-tab" data-bs-toggle="pill" href="#pills-video"
-                            role="tab" aria-controls="pills-video" aria-selected="true">Video</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-plans-tab" data-bs-toggle="pill" href="#pills-plans" role="tab"
-                            aria-controls="pills-plans" aria-selected="false">Floor Plans</a>
+                            role="tab" aria-controls="pills-video" aria-selected="true" style="font-size:18px">Video</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-map-tab" data-bs-toggle="pill" href="#pills-map" role="tab"
-                            aria-controls="pills-map" aria-selected="false">Ubication</a>
+                            aria-controls="pills-map" aria-selected="false" style="font-size:18px">Maps</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -215,33 +283,22 @@
                     </div>
                 </div>
             </div>
-
-
-        </div>
-        @if ($property->users->isNotEmpty())
-        <div class="row mt-5" style="margin: 20px 80px;">
-            <div class="section-t3 col-12">
-                <div class="">
-                    <div class="title-box-d">
-                        <h3 class="title-d">Contact Agent</h3>
-                    </div>
-                </div>
-            </div>
-            @foreach ($property->users as $user)
-            <div class="row">
-                <div class="col-md-6 col-lg-6">
+            <div class="col-4">
+                @if ($property->users->isNotEmpty())
+                <h2 style="font-size:18px; font-weight:600; display:flex; justify-content:center" class="mt-3">Contact
+                    Seller</h2>
+                <div class="card display-flex align-items-center mt-4" style="width:400px">
+                    @foreach ($property->users as $user)
                     <div class="agent_profile">
-                        <img src="{{ $user->profile_photo }}" alt="" class="img-fluid" width="260px" height="260px">
+                        <img class="card-img-top" src="{{ $user->profile_photo }}" alt="Property Seller"
+                            style="width:100%">
                     </div>
-                    <!-- <img src="assets/img/agent-4.jpg" alt="" class="img-fluid"> -->
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="property-agent">
-                        <h3 class="title-agent">{{ $user->first_name }} {{ $user->last_name }}</h3>
-                        <p class="color-text-a">
-                            {{ $user->first_name }} {{ $user->last_name }} is a very reputed Property seller in
-                            Noble Nests.
-                        </p>
+                    @endforeach
+                    <div class="card-body mt-2">
+                        <h4 class="card-title">{{ $user->first_name }} {{ $user->last_name }}</h4>
+                        <p class="card-text">{{ $user->first_name }} {{ $user->last_name }} is a very reputed Property
+                            seller in
+                            Noble Nests.</p>
                         <ul class="list-unstyled">
                             <li class="d-flex justify-content-between">
                                 <strong>Phone:</strong>
@@ -255,66 +312,16 @@
                                 <strong>Address:</strong>
                                 <span class="color-text-a">{{ $user->address }}</span>
                             </li>
-                            <!-- <li class="d-flex justify-content-between">
-                                    <strong>Skype:</strong>
-                                    <span class="color-text-a">nabin.ge</span>
-                                </li> -->
                         </ul>
-                        <div class="socials-a">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <i class="bi bi-facebook" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <i class="bi bi-twitter" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <i class="bi bi-instagram" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <i class="bi bi-linkedin" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-12 col-lg-4">
-                        <div class="property-contact">
-                            <form class="form-a">
-                                <div class="row">
-                                    <div class="col-md-12 mb-1">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mb-1">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mb-1">
-                                        <div class="form-group">
-                                            <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mt-3">
-                                        <button type="submit" class="btn btn-a">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
             </div>
-            @endforeach
+
         </div>
+
+
+        <!-- </div> -->
+
     </div>
     @else
     <p>This property does not have a seller associated with it.</p>
