@@ -11,12 +11,7 @@
 </div>
 <div class="container mt-5">
     <div class="jumbotron">
-        <!-- Role-specific content -->
-        @if (Auth::user()->type == 'seller')
-        <p>{{ Auth::user()->first_name }}, you have X properties listed for sale.</p>
-        @elseif (Auth::user()->type == 'buyer')
-        <p>{{ Auth::user()->first_name }}, here are the properties you have shown interest in.</p>
-        @endif
+
     </div>
     <h1>Properties</h1>
     <div class="row gx-2">

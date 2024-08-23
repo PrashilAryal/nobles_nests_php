@@ -135,15 +135,25 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/contact') }}">Contact</a>
                 </li>
+                @if (Auth::check())
                 @if (Auth::user()->type == 'seller')
                 <li class="nav-item">
                     <a class="nav-link nav-link-t" href="{{ route('profile') }}">Profile</a>
                 </li>
-                @endif
-                @if (Auth::user()->type == 'admin')
+                @elseif (Auth::user()->type == 'admin')
                 <li class="nav-item">
                     <!-- <a class="nav-link" href="{{ route('dashboard') }}">Admin Dashboard</a> -->
                     <a class="nav-link nav-link-t" href="{{ route('adminDashboard') }}">Admin Dashboard</a>
+                </li>
+                @else
+                <form action="{{ route('logout') }}" method="POST" class="mx-2">
+                    @csrf
+                    <button type="submit" class="button button-primary">Logout</button>
+                </form>
+                @endif
+                @else
+                <li class="nav-item">
+                    <a class="nav-link nav-link-t" href="{{ url('/login') }}">Login</a>
                 </li>
                 @endif
             </ul>

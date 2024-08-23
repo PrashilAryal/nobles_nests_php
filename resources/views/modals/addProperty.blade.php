@@ -73,9 +73,11 @@
                     <div class="contactInputBox w100">
                         <label for="type">Thumbnail Image</label>
                         <img class="card-img-top" id="output" src="" alt="Property Thumbnail">
-                        <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
+                        <input type="file" class="form-control" id="primary_image" name="primary_image"
+                            onchange="loadFile(event)" required>
                     </div>
-                    <button type=" submit" class="button button-primary">Add Property</button>
+                    <button type=" submit" class="button button-primary">
+                        <a class="button-text">Add Property</a></button>
                 </div>
             </div>
         </form>
