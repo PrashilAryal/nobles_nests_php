@@ -99,6 +99,20 @@ class PropertyController extends Controller
             ]);
         }
 
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $fileName = date('dmY') . time() . '_' . $photo->getClientOriginalName();
+                $photo->move(public_path("/uploads"), $fileName);
+
+                Photo::create([
+                    'path_name' => $fileName,
+                    'property_id' => $property->id,
+                    'type' => 'additional',
+                    'is_deleted' => false,
+                ]);
+            }
+        }
+
         //create the photos
 
 

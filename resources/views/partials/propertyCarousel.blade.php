@@ -15,7 +15,7 @@
                 <div class="carousel-item-b swiper-slide ">
                     <div class="card-box card-shadow">
                         <div class="img-box">
-                            <img src="{{asset('/uploads/230620241719133208.jpg')}}" alt="" class="img-a img-fluid">
+                            <img src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}" alt="" class="img-a img-fluid">
                         </div>
                         <div class="card-overlay ">
                             <div class="card-overlay-content">
