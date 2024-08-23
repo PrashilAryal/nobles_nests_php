@@ -50,6 +50,12 @@
                                 alt="Card image cap" width="100%" height="100%">
                             @endif
                         </div>
+                        @foreach($property->photos as $photo)
+                        <div class="carousel-item-b swiper-slide">
+                            <img src="{{ asset('/uploads/' . $photo->path_name) }}" alt="Property image" width="100%"
+                                height="100%">
+                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="property-single-carousel-pagination carousel-pagination"></div>
