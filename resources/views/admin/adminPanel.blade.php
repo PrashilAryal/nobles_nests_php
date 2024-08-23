@@ -88,11 +88,17 @@
             </li>
 
             <li>
-                <a href="{{url('/logout-admin')}}">
-                    <span class="icon">
-                        <i class="fa fa-right-from-bracket"></i>
+
+                <a>
+                    <span class="icon" style="color: white;">
+                        <i class="fa fa-right-from-bracket" style="color: white;"></i>
                     </span>
-                    <span class="title">Logout</span>
+                    <form action="{{ route('logout') }}" method="POST" class="mx-2"
+                        style="display:flex; justify-content:center; align-items:center;">
+
+                        @csrf
+                        <button type="submit" style="background:transparent; color:white; border:none;">Logout</button>
+                    </form>
                 </a>
             </li>
         </ul>

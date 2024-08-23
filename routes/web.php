@@ -20,7 +20,7 @@ use App\Http\Controllers\StripeController;
 */
 
 // START: Page Routes
-Route::get('/', [AuthController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/', [AuthController::class, 'home'])->name('home');
 Route::get('/contact', [AuthController::class, 'contact'])->name('contact');
 Route::get('/all-properties', [AuthController::class, 'properties'])->name('properties');
 Route::get('/about-us', [AuthController::class, 'about'])->name('about');
@@ -43,7 +43,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 // Start: User Login Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/', [AuthController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/', [AuthController::class, 'home'])->name('home');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // End: User Login Routes
 
@@ -53,11 +53,11 @@ Route::get('/dashboard', [ProfileController::class, 'showDashboard'])->name('das
 // End: Profile routes
 
 // Start: Property Controller Routes
+Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('properties.show');
 Route::get('/properties', [PropertyController::class, 'addPropertyView'])->name('propertiesAdd')->middleware('auth');
 Route::post('/properties', [PropertyController::class, 'store'])->name('properties.store')->middleware('auth');
 Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('propertiesEdit')->middleware('auth');
 Route::put('/properties/{property}', [PropertyController::class, 'update'])->name('properties.update')->middleware('auth');
-Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('properties.show');
 Route::patch('properties/{property}/delete', [PropertyController::class, 'propertyDestroy'])->name('propertyDestroy')->middleware('auth');
 // End: Property Controller Routes
 
