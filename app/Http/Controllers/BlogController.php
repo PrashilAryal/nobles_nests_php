@@ -16,6 +16,13 @@ class BlogController extends Controller
 
         return view('pages.blogs', compact('blogs'));
     }
+
+    public function blog_details($id)
+    {
+        // dd($id);
+        $blog = Blog::find($id);
+        return view('pages.blogDetails', compact('blog'));
+    }
     public function blog_upload()
     {
         $data = User::find(Auth::user()->id);

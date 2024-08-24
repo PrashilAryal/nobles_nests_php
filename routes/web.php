@@ -105,4 +105,5 @@ Route::post('stripe/{id}', [StripeController::class, 'stripePost'])->name('strip
 
 // START : Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog-details/{id}', [BlogController::class, 'blog_details'])->name('blog.details');
 // END : Blog

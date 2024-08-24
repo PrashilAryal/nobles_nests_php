@@ -81,9 +81,11 @@
                             <input type="password" id="password_confirmation" name="password_confirmation" required>
                             <span>Confirm Password</span>
                         </div>
-                        <button type="submit" class="button button-primary">
-                            <a class="button-text">Register</a>
-                        </button>
+                        <div class="contactInputBox w50">
+                            <button type="submit" class="button button-primary">
+                                <a class="button-text">Register</a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

@@ -20,7 +20,7 @@
                             <span class="fw-bold">Author: </span>{{ $blog->author }}
                         </small>
                     </p>
-                    <a href="#" class="btn1">Read More</a>
+                    <a href="{{ route('blog.details', $blog->id) }}" class="btn1">Read More</a>
                 </div>
             </div>
 
