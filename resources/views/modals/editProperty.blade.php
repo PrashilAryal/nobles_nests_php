@@ -69,9 +69,13 @@
 
                     <div class="contactInputBox w100">
                         <label for="type">Thumbnail Image</label>
-                        @if($property->photos->count() > 0)
-                        <img class="card-img-top" id="output"
-                            src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}" alt="Card Thumbnail">
+                        @php
+                        $primaryPhoto = $property->photos->firstWhere('type', 'primary');
+                        @endphp
+
+                        @if($primaryPhoto)
+                        <img class="card-img-top" id="output" src="{{ asset('/uploads/'.$primaryPhoto->path_name) }}"
+                            alt="Card Thumbnail">
                         @endif
                         <input type="file" class="form-control" id="primary_image" name="primary_image"
                             onchange="loadFile(event)" required>

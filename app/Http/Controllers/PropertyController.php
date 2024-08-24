@@ -44,10 +44,10 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        // dd($request);
 
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|max:255',
             'total_price' => 'required|numeric',
             'booking_price' => 'required|numeric',
             'city' => 'required|string|max:255',
@@ -58,6 +58,10 @@ class PropertyController extends Controller
             'kitchens' => 'required|numeric',
             'parking' => 'required|numeric',
             'type' => 'required|string|max:255',
+            'bathrooms' => 'required|numeric',
+            'description' => 'required',
+            'video_link' => 'required',
+            'map_link' => 'required',
         ]);
 
         // Create the property
@@ -72,6 +76,10 @@ class PropertyController extends Controller
             'bedrooms' => $request->bedrooms,
             'kitchens' => $request->kitchens,
             'parking' => $request->parking,
+            'bathrooms' => $request->bathrooms,
+            'description' => $request->description,
+            'video_link' => $request->video_link,
+            'map_link' => $request->map_link,
             'type' => $request->type,
             'user_id' => Auth::id(),
             'is_sold' => false,
@@ -147,6 +155,9 @@ class PropertyController extends Controller
 
         if ($request->filled('bedrooms')) {
             $query->where('bedrooms', '=', $request->input('bedrooms'));
+        }
+        if ($request->filled('bathrooms')) {
+            $query->where('bathrooms', '=', $request->input('bathrooms'));
         }
 
         if ($request->filled('kitchens')) {
@@ -227,7 +238,7 @@ class PropertyController extends Controller
         }
 
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|max:255',
             'total_price' => 'required|numeric',
             'booking_price' => 'required|numeric',
             'city' => 'required|string|max:255',
@@ -238,6 +249,10 @@ class PropertyController extends Controller
             'kitchens' => 'required|numeric',
             'parking' => 'required|numeric',
             'type' => 'required|string|max:255',
+            'bathrooms' => 'required|numeric',
+            'description' => 'required',
+            'video_link' => 'required',
+            'map_link' => 'required',
         ]);
 
         // Update the property
@@ -253,6 +268,10 @@ class PropertyController extends Controller
             'kitchens' => $request->kitchens,
             'parking' => $request->parking,
             'type' => $request->type,
+            'bathrooms' => $request->bathrooms,
+            'description' => $request->description,
+            'video_link' => $request->video_link,
+            'map_link' => $request->map_link,
         ]);
 
         $photoDetail = Photo::where('property_id', $property->id)->where('type', 'primary')->first();

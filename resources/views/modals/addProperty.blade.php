@@ -24,15 +24,15 @@
                         <span>Title</span>
                     </div>
                     <div class="contactInputBox w50">
-                        <input type="type" id="type" name="type" autocomplete="off" required>
+                        <input type="string" id="type" name="type" autocomplete="off" required>
                         <span>Type</span>
                     </div>
                     <div class="contactInputBox w50">
-                        <input type="type" id="total_price" name="total_price" autocomplete="off" required>
+                        <input type="number" id="total_price" name="total_price" autocomplete="off" required>
                         <span>Total Price</span>
                     </div>
                     <div class="contactInputBox w50">
-                        <input type="text" id="booking_price" name="booking_price" autocomplete="off" required>
+                        <input type="number" id="booking_price" name="booking_price" autocomplete="off" required>
                         <span>Booking Price</span>
                     </div>
                     <div class="contactInputBox w50">
@@ -56,12 +56,24 @@
                         <span>Bedrooms</span>
                     </div>
                     <div class="contactInputBox w50">
+                        <input type="number" id="bathrooms" name="bathrooms" autocomplete="off" required>
+                        <span>Bathrooms</span>
+                    </div>
+                    <div class="contactInputBox w50">
                         <input type="number" id="kitchens" name="kitchens" autocomplete="off" required>
                         <span>Kitchens</span>
                     </div>
                     <div class="contactInputBox w50">
                         <input type="number" id="parking" name="parking" autocomplete="off" required>
                         <span>Parking</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="video_link" name="video_link" autocomplete="off" required>
+                        <span>Video Link</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="map_link" name="map_link" autocomplete="off" required>
+                        <span>Map Link</span>
                     </div>
                     <div class="contactInputBox w100">
                         <label for="type">Thumbnail Image</label>

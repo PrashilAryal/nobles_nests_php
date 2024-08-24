@@ -51,13 +51,60 @@
 
 
         <div class="row justify-content-center">
-            <div class="col-lg-12">
+            <!-- <div class="row mt-5"> -->
+            <div class="col-6 mt-5">
+                <div class="col-sm-12 col-12">
+                    <div class="row section-t3">
+                        <div class="col-sm-12">
+                            <div class="title-box-d amenities">
+                                <h3 class="title-d">Amenities</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="amenities-list color-text-a">
+                        <ul class="list-a no-margin">
+                            <li>Balcony</li>
+                            <li>Outdoor Kitchen</li>
+                            <li>Cable Tv</li>
+                            <li>Deck</li>
+                            <li>Tennis Courts</li>
+                            <li>Internet</li>
+                            <li>Parking</li>
+                            <li>Sun Room</li>
+                            <li>Concrete Flooring</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row justify-content-between mt-5">
+                    <div class="col-md-5 col-lg-12">
+                        <div class="property-price d-flex foo">
+                            <div class="card-header-c">
+                                <div class="card-box-ico d-flex">
+                                    <span class="bi bi-cash mx-2 " style="color: green;"></span>
+                                    <span>$</span>
+                                    <span>{{ number_format($property->total_price, 2) }}</span>
+                                    @if($property->is_sold)
+                                    <p class="badge bg-primary" style="margin: auto; margin-left:12px;">Booked</p>
+                                    @endif
+                                    @if(!$property->is_sold)
+                                    <button class="button button-primary mx-3" style="margin:auto;">
+                                        <a href="{{ url('stripe', $property->id) }}" class="button-text">Book
+                                            Now</a>
+                                    </button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
                 <div id="property-single-carousel" class="swiper">
                     <div class="swiper-wrapper">
                         @foreach($property->photos as $photo)
                         <div class="carousel-item-b swiper-slide property-details-img">
                             <img src="{{ asset('/uploads/' . $photo->path_name) }}" alt="Property image" width="100%"
-                                height="100%">
+                                height="100%" style="object-fit:cover;">
                         </div>
                         @endforeach
                     </div>
@@ -70,59 +117,10 @@
             </div>
             @endif -->
         </div>
-        <div class="row mt-5">
-            <div class="col-sm-12 col-12">
-                <div class="row section-t3">
-                    <div class="col-sm-12">
-                        <div class="title-box-d amenities">
-                            <h3 class="title-d">Amenities</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="amenities-list color-text-a">
-                    <ul class="list-a no-margin">
-                        <li>Balcony</li>
-                        <li>Outdoor Kitchen</li>
-                        <li>Cable Tv</li>
-                        <li>Deck</li>
-                        <li>Tennis Courts</li>
-                        <li>Internet</li>
-                        <li>Parking</li>
-                        <li>Sun Room</li>
-                        <li>Concrete Flooring</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-between mt-3">
-            <div class="col-md-5 col-lg-12">
-                <div class="property-price d-flex foo">
-                    <div class="card-header-c">
-                        <div class="card-box-ico d-flex">
-                            <span class="bi bi-cash mx-2 " style="color: green;"></span>
-                            <span>$</span>
-                            <span>{{ number_format($property->total_price, 2) }}</span>
-                            @if($property->is_sold)
-                            <p class="badge bg-primary" style="margin: auto; margin-left:12px;">Booked</p>
-                            @endif
-                            @if(!$property->is_sold)
-                            <button class="button button-primary mx-3" style="margin:auto;">
-                                <a href="{{ url('stripe', $property->id) }}" class="button-text">Book
-                                    Now</a>
-                            </button>
-                            @endif
-                        </div>
 
-                        <!-- <div class="card-title-c align-self-center">
-                                    <h5 class="title-c">15000</h5>
-                                </div> -->
-                    </div>
-                </div>
 
-            </div>
-        </div>
         <div class="row mt-5">
-            <div class="property-summary col-5">
+            <div class="property-summary col-6">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="title-box-d section-t4">
@@ -242,7 +240,7 @@
                     </ul> -->
                 </div>
             </div>
-            <div class="col-7">
+            <div class="col-6">
                 <div class="col-sm-12">
                     <div class="title-box-d">
                         <h3 class="title-d">Property Description</h3>
@@ -280,16 +278,20 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-video" role="tabpanel"
                         aria-labelledby="pills-video-tab">
-                        <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0"
+                        <iframe src="{{ $property->video_link }}" width="100%" height="460" frameborder="0"
                             webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <!-- <iframe src="https://player.vimeo.com/video/73221098" width="100%" height="460" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
                     </div>
                     <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
                         <img src="assets/img/plan2.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-                        <iframe
+                        <iframe src="{{ $property->map_link }}" width="100%" height="460" frameborder="0"
+                            style="border:0" allowfullscreen></iframe>
+                        <!-- <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834"
-                            width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe> -->
                     </div>
                 </div>
             </div>

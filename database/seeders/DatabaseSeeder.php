@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             BookingsTableSeeder::class,
             UserPropertyTableSeeder::class,
             PhotosTableSeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }

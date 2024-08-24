@@ -11,11 +11,20 @@
     </div>
 
 </div>
-
-<div class="property-description">
-    <p class="description color-text-a">
-        {{ $blog->details }}
-    </p>
+<div class="container">
+    <div class="property-description" style="text-align: justify; line-height: 2;">
+        <p class="description color-text-a mt-5">
+            {!! $blog->details !!}
+        </p>
+        <div style="display: flex; flex-direction: column;">
+            <span>
+                <strong>Author:</strong> {{ $blog->author }}
+            </span>
+            <span>
+                <strong>Date:</strong> {{ $blog->date }}
+            </span>
+        </div>
+    </div>
 </div>
 
 @endsection

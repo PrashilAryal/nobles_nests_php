@@ -396,7 +396,7 @@
     background-color: var(--primary-color-light) !important;
 }
 .property-details-img {
-    height: calc(100vh - 160px) !important;
+    height: calc(100vh - 280px) !important;
 }
 .property-single .title-box-d.amenities {
     display: flex !important;
@@ -1336,7 +1336,7 @@ footer .credits {
     padding: 0;
     list-style: none;
     margin-bottom: 0;
-    padding-left: 200px;
+    padding-left: 40px;
 }
 
 .list-a li {
