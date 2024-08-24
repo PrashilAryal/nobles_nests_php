@@ -77,7 +77,7 @@
                     </li>
                     <li>
                         <span><img src="{{ asset('../images/mail.png') }}" alt=""></span>
-                        <span>chefskitchen@gmail.com</span>
+                        <span>noblenests@gmail.com</span>
                     </li>
                     <li>
                         <span><img src="{{ asset('../images/phone-call.png') }}" alt=""></span>
@@ -127,7 +127,9 @@
                         <span>Write your message here...</span>
                     </div>
                     <div class="contactInputBox w50">
-                        <button type="submit" class="button button-primary">Send</button>
+                        <button type="submit" class="button button-primary">
+                            <a class="button-text">Send</a>
+                        </button>
                     </div>
                 </div>
             </div>

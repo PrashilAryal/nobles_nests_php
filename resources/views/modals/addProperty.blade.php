@@ -5,13 +5,6 @@
     <div class="contactContainer propertyContainer">
         <!-- <h1 class="propertyTitle">Add Property</h1> -->
         <img src="{{ asset('../images/house.png') }}" alt="" class="propertyIcon">
-
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
-
         <form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data" class="propertyForm">
             @csrf
             <div class="contactForm propertyFormContent">
@@ -73,14 +66,16 @@
                     <div class="contactInputBox w100">
                         <label for="type">Thumbnail Image</label>
                         <img class="card-img-top" id="output" src="" alt="Property Thumbnail">
-                        <input type="file" class="form-control" id="primary_image" name="primary_image" onchange="loadFile(event)" required>
+                        <input type="file" class="form-control" id="primary_image" name="primary_image"
+                            onchange="loadFile(event)" required>
                     </div>
                     <!-- Multiple Photos Input -->
                     <div class="contactInputBox w100">
                         <label for="photos">Additional Photos</label>
                         <input type="file" class="form-control" id="photos" name="photos[]" multiple>
                     </div>
-                    <button type=" submit" class="button button-primary">Add Property</button>
+                    <button type=" submit" class="button button-primary">
+                        <a class="button-text">Add Property</a></button>
                 </div>
             </div>
         </form>

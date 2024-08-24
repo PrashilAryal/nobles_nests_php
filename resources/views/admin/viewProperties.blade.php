@@ -28,16 +28,18 @@
                     ${{ number_format($value->total_price, 2) }}
                 </td>
                 <td>{{ $value['district'] }}</td>
-                <td>{{ $value['Bedroom'] }}</td>
-                <td>{{ $value['Kitchen'] }}</td>
-                <td>{{ $value['Parking'] }}</td>
+                <td>{{ $value['bedrooms'] }}</td>
+                <td>{{ $value['kitchens'] }}</td>
+                <td>{{ $value['parking'] }}</td>
                 <td>
                     <a href="{{ route('properties.show', $value->id) }}" class="btn btn-primary">View</a>
 
-                    <form action="{{ route('properties.adminDestroyProperty', $value->id) }}" method="POST" style="display:inline-block;">
+                    <form action="{{ route('properties.adminDestroyProperty', $value->id) }}" method="POST"
+                        style="display:inline-block;">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this property?');">Delete</button>
+                        <button type="submit" class="btn btn-danger"
+                            onclick="return confirm('Are you sure you want to delete this property?');">Delete</button>
                     </form>
                 </td>
             </tr>

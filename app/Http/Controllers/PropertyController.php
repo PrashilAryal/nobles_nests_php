@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Models\UserProperty;
+use App\Models\User;
 use App\Models\Photo;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
     // Constructor to apply auth middleware
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -130,6 +131,48 @@ class PropertyController extends Controller
         $property = Property::with('users')->findOrFail($id);
         return view('pages.propertyDetails', compact('property'));
     }
+    public function search_properties()
+    {
+        return view('pages.searchProperties');
+    }
+    public function search_results(Request $request)
+    {
+        $query = Property::query();
+
+        // Apply filters based on the request inputs
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->input('title') . '%');
+        }
+
+        if ($request->filled('bedrooms')) {
+            $query->where('bedrooms', '=', $request->input('bedrooms'));
+        }
+
+        if ($request->filled('kitchens')) {
+            $query->where('kitchens', '=', $request->input('kitchens'));
+        }
+
+        if ($request->filled('min_price')) {
+            $query->where('total_price', '>=', $request->input('min_price'));
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('total_price', '<=', $request->input('max_price'));
+        }
+
+        if ($request->filled('area')) {
+            $query->where('area', '=', $request->input('area'));
+        }
+
+        // Include related models (users and photos)
+        $query->with(['users', 'photos']);
+
+        $properties = $query->get();
+        // $data = User::find(Auth::user()->id);
+        return view('pages.viewSearchedProperties', compact('properties'));
+        // return view('pages.viewSearchedProperties', compact('properties', 'data'));
+    }
+
     public function addPropertyView()
     {
 

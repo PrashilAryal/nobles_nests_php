@@ -9,11 +9,14 @@
     </title>
     <link rel="stylesheet" href="{{ URL::asset('css/admin.css'); }}" />
     <link rel="stylesheet" href="{{ asset('css/recipe.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@300;400;900&family=Fira+Sans&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@300;400;900&family=Fira+Sans&family=Ubuntu:wght@300;400;500;700&display=swap"
+        rel="stylesheet" />
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <script src="https://kit.fontawesome.com/6ac97bb13c.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -85,11 +88,17 @@
             </li>
 
             <li>
-                <a href="{{url('/logout-admin')}}">
-                    <span class="icon">
-                        <i class="fa fa-right-from-bracket"></i>
+
+                <a>
+                    <span class="icon" style="color: white;">
+                        <i class="fa fa-right-from-bracket" style="color: white;"></i>
                     </span>
-                    <span class="title">Logout</span>
+                    <form action="{{ route('logout') }}" method="POST" class="mx-2"
+                        style="display:flex; justify-content:center; align-items:center;">
+
+                        @csrf
+                        <button type="submit" style="background:transparent; color:white; border:none;">Logout</button>
+                    </form>
                 </a>
             </li>
         </ul>
@@ -102,22 +111,21 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
                 <!-- search -->
-                <form action="{{url('/search')}}" method="get">
+                <!-- <form action="{{url('/search')}}" method="get">
 
                     <div class="search">
                         <label for="">
                             <input type="text" placeholder="Search Chef" name="srch_chef" />
-                            <!-- <ion-icon name="search-outline"></ion-icon> -->
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </label>
                     </div>
-                </form>
+                </form> -->
                 <!-- userImg -->
                 <div class="adminTopName">
-                    <h3>{{$data->chef_name}}</h3>
+                    <h5 class="mx-2">{{$data->first_name}} {{$data->last_name}}</h5>
                     <div class="user">
                         <span>
-                            <img src="{{asset('storage/'.$data->chef_profile_photo)}}" alt="">
+                            <img src="{{ $data->profile_photo }}" alt="">
                             <!-- <ion-icon name="person-circle-sharp" size="large"></ion-icon> -->
                         </span>
                     </div>
@@ -173,24 +181,24 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <script>
-        //Menu toogle
-        let toggle = document.querySelector(".toggle");
-        let navigation = document.querySelector(".navigation");
-        let main = document.querySelector(".main");
+    //Menu toogle
+    let toggle = document.querySelector(".toggle");
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
 
-        toggle.onclick = function() {
-            navigation.classList.toggle("active");
-            main.classList.toggle("active");
-        };
+    toggle.onclick = function() {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+    };
 
-        //add hovered class in selected list item
-        let list = document.querySelectorAll(".navigation li");
+    //add hovered class in selected list item
+    let list = document.querySelectorAll(".navigation li");
 
-        function activelink() {
-            list.forEach((item) => item.classList.remove("hovered"));
-            this.classList.add("hovered");
-        }
-        list.forEach((item) => item.addEventListener("mouseover", activelink));
+    function activelink() {
+        list.forEach((item) => item.classList.remove("hovered"));
+        this.classList.add("hovered");
+    }
+    list.forEach((item) => item.addEventListener("mouseover", activelink));
     </script>
 </body>
 

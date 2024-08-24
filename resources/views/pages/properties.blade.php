@@ -11,12 +11,7 @@
 </div>
 <div class="container mt-5">
     <div class="jumbotron">
-        <!-- Role-specific content -->
-        @if (Auth::user()->type == 'seller')
-        <p>{{ Auth::user()->first_name }}, you have X properties listed for sale.</p>
-        @elseif (Auth::user()->type == 'buyer')
-        <p>{{ Auth::user()->first_name }}, here are the properties you have shown interest in.</p>
-        @endif
+
     </div>
     <h1>Properties</h1>
     <div class="row gx-2">
@@ -50,7 +45,19 @@
                             <div class="property-card-price col-5">
                                 <p class="card-text">
                                     ${{ number_format($property->booking_price, 2) }}</p>
-                                <button class="button button-primary">Book Now</button>
+                                <!-- <button class="button button-primary">
+                                    Book Now
+                                </button> -->
+                                @if($property->is_sold)
+                                <p class="badge bg-primary" style="margin: auto; margin-left:12px;">Booked</p>
+                                @endif
+                                @if(!$property->is_sold)
+                                <button class="button button-primary" style="margin:auto;">
+                                    <a href="{{ url('stripe', $property->id) }}"
+                                        style="text-decoration: none; color: white">Book
+                                        Now</a>
+                                </button>
+                                @endif
                             </div>
                         </div>
                     </div>

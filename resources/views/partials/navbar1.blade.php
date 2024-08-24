@@ -7,85 +7,56 @@
     </div>
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
-        <form class="form-a">
+        <form action="{{ route('search_results') }}" method="GET">
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
-                        <label class="pb-2" for="Type">Keyword</label>
-                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
-                    </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-group mt-3">
-                        <label class="pb-2" for="Type">Type</label>
-                        <select class="form-control form-select form-control-a" id="Type">
-                            <option>All Type</option>
-                            <option>For Rent</option>
-                            <option>For Sale</option>
-                            <option>Open House</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-group mt-3">
-                        <label class="pb-2" for="city">City</label>
-                        <select class="form-control form-select form-control-a" id="city">
-                            <option>All City</option>
-                            <option>Alabama</option>
-                            <option>Arizona</option>
-                            <option>California</option>
-                            <option>Colorado</option>
-                        </select>
+                        <label class="pb-2" for="title">Keyword</label>
+                        <input type="text" name="title" id="title" value="{{ request('title') }}"
+                            class="form-control form-control-lg form-control-a" placeholder="Keyword">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
                         <label class="pb-2" for="bedrooms">Bedrooms</label>
-                        <select class="form-control form-select form-control-a" id="bedrooms">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                        </select>
+                        <input type="number" name="bedrooms" id="bedrooms" value="{{ request('bedrooms') }}"
+                            class="form-control form-control-lg form-control-a" placeholder="Bedrooms">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
-                        <label class="pb-2" for="garages">Garages</label>
-                        <select class="form-control form-select form-control-a" id="garages">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                        </select>
+                        <label class="pb-2" for="Kitchens">Kitchens</label>
+                        <input type="number" name="kitchens" id="kitchens" value="{{ request('kitchens') }}"
+                            class="form-control form-control-lg form-control-a" placeholder="Kitchens">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
-                        <label class="pb-2" for="bathrooms">Bathrooms</label>
-                        <select class="form-control form-select form-control-a" id="bathrooms">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                        </select>
+                        <label class="pb-2" for="min_price">Min Price</label>
+                        <input type="number" name="min_price" id="min_price" value="{{ request('min_price') }}"
+                            class="form-control form-control-lg form-control-a" placeholder="Min Price">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
-                        <label class="pb-2" for="price">Min Price</label>
-                        <select class="form-control form-select form-control-a" id="price">
-                            <option>Unlimite</option>
-                            <option>$50,000</option>
-                            <option>$100,000</option>
-                            <option>$150,000</option>
-                            <option>$200,000</option>
-                        </select>
+                        <label class="pb-2" for="max_price">Max Price</label>
+                        <input type="number" name="max_price" id="max_price" value="{{ request('max_price') }}"
+                            class="form-control form-control-lg form-control-a" placeholder="Max Price">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group mt-3">
+                        <label class="pb-2" for="area">Area</label>
+                        <input type="number" name="area" id="area" value="{{ request('area') }}"
+                            class="form-control form-control-lg form-control-a" placeholder="Area (sq.ft.)">
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-b">Search Property</button>
+                    <button type="submit" class="button button-primary">
+                        <span class="button-text">
+                            Search Property
+                        </span>
+                    </button>
                 </div>
             </div>
         </form>
@@ -109,6 +80,8 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/') }}">Home</a>
                 </li>
+                <a class="nav-link" href="{{ route('search_properties') }}">Search</a>
+                <a class="nav-link" href="{{ url('/search') }}">Search</a>
 
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/about-us') }}">About</a>
@@ -120,6 +93,9 @@
 
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/') }}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-t " href="{{ route('search_properties')}}">Search</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -135,15 +111,25 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/contact') }}">Contact</a>
                 </li>
+                @if (Auth::check())
                 @if (Auth::user()->type == 'seller')
                 <li class="nav-item">
                     <a class="nav-link nav-link-t" href="{{ route('profile') }}">Profile</a>
                 </li>
-                @endif
-                @if (Auth::user()->type == 'admin')
+                @elseif (Auth::user()->type == 'admin')
                 <li class="nav-item">
                     <!-- <a class="nav-link" href="{{ route('dashboard') }}">Admin Dashboard</a> -->
                     <a class="nav-link nav-link-t" href="{{ route('adminDashboard') }}">Admin Dashboard</a>
+                </li>
+                @else
+                <form action="{{ route('logout') }}" method="POST" class="mx-2">
+                    @csrf
+                    <button type="submit" class="button button-primary">Logout</button>
+                </form>
+                @endif
+                @else
+                <li class="nav-item">
+                    <a class="nav-link nav-link-t" href="{{ url('/login') }}">Login</a>
                 </li>
                 @endif
             </ul>

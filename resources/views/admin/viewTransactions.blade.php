@@ -14,6 +14,7 @@
                 <th>Currency</th>
                 <th>Status</th>
                 <th>Product Name</th>
+                <th>Email</th>
                 <th>Created</th>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td>{{ strtoupper($charge->currency) }}</td>
                 <td>{{ ucfirst($charge->status) }}</td>
                 <td>{{ $charge->metadata['product_name'] }}</td>
+                <td>{{ $charge->billing_details->name }}</td>
                 <td>{{ \Carbon\Carbon::createFromTimestamp($charge->created)->toDateTimeString() }}</td>
             </tr>
             @endforeach
