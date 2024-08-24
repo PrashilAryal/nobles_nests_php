@@ -2,6 +2,21 @@
 
 @section('content')
 <!-- ======= Intro Single ======= -->
+<div class="row">
+    @php
+    $primaryPhoto = $property->photos->firstWhere('type', 'primary');
+    @endphp
+
+    @if($primaryPhoto)
+
+    <div class="about_image">
+        <img src="{{ asset('/uploads/'.$primaryPhoto->path_name) }}" alt="">
+        <div class="about_title">
+            <p class="banner-title">{{ $property->title }}</p>
+        </div>
+    </div>
+    @endif
+</div>
 <section class="intro-single">
     <div class="container">
         <div class="row">
@@ -30,13 +45,15 @@
     </div>
 </section><!-- End Intro Single-->
 <!-- ======= Property Single ======= -->
+
 <section class="property-single nav-arrow-b">
     <div class="container">
+
+
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div id="property-single-carousel" class="swiper">
                     <div class="swiper-wrapper">
-
                         @foreach($property->photos as $photo)
                         <div class="carousel-item-b swiper-slide property-details-img">
                             <img src="{{ asset('/uploads/' . $photo->path_name) }}" alt="Property image" width="100%"
@@ -47,11 +64,11 @@
                 </div>
                 <div class="property-single-carousel-pagination carousel-pagination"></div>
             </div>
-            @if(Auth::check() && Auth::id() == $property->user_id)
+            <!-- @if(Auth::check() && Auth::id() == $property->user_id)
             <div style="width: fit-content;">
                 <a href="{{ route('propertiesEdit', $property->id) }}" class="button button-primary">Edit</a>
             </div>
-            @endif
+            @endif -->
         </div>
         <div class="row mt-5">
             <div class="col-sm-12 col-12">

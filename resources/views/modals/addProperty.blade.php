@@ -5,13 +5,6 @@
     <div class="contactContainer propertyContainer">
         <!-- <h1 class="propertyTitle">Add Property</h1> -->
         <img src="{{ asset('../images/house.png') }}" alt="" class="propertyIcon">
-
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
-
         <form action="{{ route('properties.store') }}" method="POST" enctype="multipart/form-data" class="propertyForm">
             @csrf
             <div class="contactForm propertyFormContent">
