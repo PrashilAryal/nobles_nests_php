@@ -16,12 +16,15 @@
             <h1 class="stripe_title">Stripe Payment</h1>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center">
-
             <?php $showReceipt = false ?>
 
             @if (session('success'))
+            @if (session('success') !== 'Logged in successfully')
+
             <div class="alert alert-success">{{ session('success') }}</div>
-            <?php $showReceipt = true ?>
+            <?php
+            $showReceipt = true ?>
+            @endif
             @endif
             <div class="stripe_property_title">
                 <h3>{{$property->title}}</h3>

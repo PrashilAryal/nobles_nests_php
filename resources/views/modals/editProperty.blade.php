@@ -63,15 +63,39 @@
                         <span>Parking</span>
                     </div>
                     <div class="contactInputBox w50">
+                        <input type="number" id="bathrooms" name="bathrooms" value="{{ $property->bathrooms }}"
+                            autocomplete="off" required>
+                        <span>Bathrooms</span>
+                    </div>
+                    <div class="contactInputBox w50">
                         <input type="text" id="type" name="type" value="{{ $property->type }}" required>
                         <span>Type</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="video_link" name="video_link" value="{{ $property->video_link }}"
+                            autocomplete="off" required>
+                        <span>Video Link</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="map_link" name="map_link" value="{{ $property->map_link }}"
+                            autocomplete="off" required>
+                        <span>Map Link</span>
+                    </div>
+                    <div class="contactInputBox w100">
+                        <input type="textarea" id="description" name="description" value="{{ $property->description }}"
+                            autocomplete="off" required>
+                        <span>Description</span>
                     </div>
 
                     <div class="contactInputBox w100">
                         <label for="type">Thumbnail Image</label>
-                        @if($property->photos->count() > 0)
-                        <img class="card-img-top" id="output"
-                            src="{{asset('/uploads'.'/'.$property->photos->first()->path_name)}}" alt="Card Thumbnail">
+                        @php
+                        $primaryPhoto = $property->photos->firstWhere('type', 'primary');
+                        @endphp
+
+                        @if($primaryPhoto)
+                        <img class="card-img-top" id="output" src="{{ asset('/uploads/'.$primaryPhoto->path_name) }}"
+                            alt="Card Thumbnail">
                         @endif
                         <input type="file" class="form-control" id="primary_image" name="primary_image"
                             onchange="loadFile(event)" required>

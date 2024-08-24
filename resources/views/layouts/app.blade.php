@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url('../../../../css/contactUs.css') }}">
     <link rel="stylesheet" href="{{ url('../../../../css/aboutUs.css') }}">
     <link rel="stylesheet" href="{{ url('../../../../css/carousel.css') }}">
+    <link rel="stylesheet" href="{{ url('../../../../css/blog.css') }}">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
@@ -44,145 +45,145 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script>
-    (function() {
-        "use strict";
+        (function() {
+            "use strict";
 
-        // Helper function to select an element
-        const select = (el, all = false) => {
-            el = el.trim();
-            if (all) {
-                return [...document.querySelectorAll(el)];
-            } else {
-                return document.querySelector(el);
-            }
-        };
-
-        // Helper function to listen for events
-        const on = (type, el, listener, all = false) => {
-            let selectEl = select(el, all);
-            if (selectEl) {
+            // Helper function to select an element
+            const select = (el, all = false) => {
+                el = el.trim();
                 if (all) {
-                    selectEl.forEach(e => e.addEventListener(type, listener));
+                    return [...document.querySelectorAll(el)];
                 } else {
-                    selectEl.addEventListener(type, listener);
+                    return document.querySelector(el);
                 }
-            }
-        };
+            };
 
-        // // Navbar scroll change
-        // let selectHNavbar = select('.navbar-default');
-        // if (selectHNavbar) {
-        //     window.addEventListener('scroll', () => {
-        //         if (window.scrollY > 100) {
-        //             selectHNavbar.classList.add('navbar-reduce');
-        //             selectHNavbar.classList.remove('navbar-trans');
-        //         } else {
-        //             selectHNavbar.classList.remove('navbar-reduce');
-        //             selectHNavbar.classList.add('navbar-trans');
-        //         }
-        //     });
-        // }
+            // Helper function to listen for events
+            const on = (type, el, listener, all = false) => {
+                let selectEl = select(el, all);
+                if (selectEl) {
+                    if (all) {
+                        selectEl.forEach(e => e.addEventListener(type, listener));
+                    } else {
+                        selectEl.addEventListener(type, listener);
+                    }
+                }
+            };
 
-        let body = select('body');
-        on('click', '.navbar-toggle-box', function(e) {
-            e.preventDefault();
-            body.classList.add('box-collapse-open');
-            body.classList.remove('box-collapse-closed');
-        });
+            // // Navbar scroll change
+            // let selectHNavbar = select('.navbar-default');
+            // if (selectHNavbar) {
+            //     window.addEventListener('scroll', () => {
+            //         if (window.scrollY > 100) {
+            //             selectHNavbar.classList.add('navbar-reduce');
+            //             selectHNavbar.classList.remove('navbar-trans');
+            //         } else {
+            //             selectHNavbar.classList.remove('navbar-reduce');
+            //             selectHNavbar.classList.add('navbar-trans');
+            //         }
+            //     });
+            // }
 
-        on('click', '.close-box-collapse', function(e) {
-            e.preventDefault();
-            body.classList.remove('box-collapse-open');
-            body.classList.add('box-collapse-closed');
-        });
+            let body = select('body');
+            on('click', '.navbar-toggle-box', function(e) {
+                e.preventDefault();
+                body.classList.add('box-collapse-open');
+                body.classList.remove('box-collapse-closed');
+            });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Property carousel
-            new Swiper('#property-carousel', {
-                speed: 600,
-                loop: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false
-                },
-                slidesPerView: 'auto',
-                pagination: {
-                    el: '.carousel-pagination',
-                    type: 'bullets',
-                    clickable: true
-                },
-                breakpoints: {
-                    320: {
-                        slidesPerView: 1,
-                        spaceBetween: 20
+            on('click', '.close-box-collapse', function(e) {
+                e.preventDefault();
+                body.classList.remove('box-collapse-open');
+                body.classList.add('box-collapse-closed');
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Property carousel
+                new Swiper('#property-carousel', {
+                    speed: 600,
+                    loop: true,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false
                     },
-                    1200: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
+                    slidesPerView: 'auto',
+                    pagination: {
+                        el: '.carousel-pagination',
+                        type: 'bullets',
+                        clickable: true
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 20
+                        },
+                        1200: {
+                            slidesPerView: 3,
+                            spaceBetween: 20
+                        }
                     }
-                }
-            });
-
-            // Property single carousel
-            new Swiper('#property-single-carousel', {
-                speed: 600,
-                loop: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false
-                },
-                pagination: {
-                    el: '.property-single-carousel-pagination',
-                    type: 'bullets',
-                    clickable: true
-                }
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link-t');
-            const currentUrl = window.location.href;
-
-            // Function to remove 'active' class from all links
-            function removeActiveClass() {
-                navLinks.forEach(link => {
-                    link.classList.add('navbar-reduce');
-                    link.classList.remove('navbar-trans');
-                    link.classList.remove('active');
                 });
-            }
 
-            // Add event listeners to each nav link
-            navLinks.forEach(link => {
-                // Set the active class based on URL
-                if (link.href === currentUrl) {
-                    link.classList.add('active');
-                    localStorage.setItem('activeLink', link
-                        .href); // Save the active link to localStorage
-                }
-
-                link.addEventListener('click', function() {
-                    removeActiveClass(); // Remove 'active' from all links
-                    this.classList.add('active'); // Add 'active' to the clicked link
-                    this.classList.add('navbar-reduce');
-                    this.classList.remove('navbar-trans');
-                    localStorage.setItem('activeLink', this
-                        .href); // Save the active link to localStorage
+                // Property single carousel
+                new Swiper('#property-single-carousel', {
+                    speed: 600,
+                    loop: true,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: '.property-single-carousel-pagination',
+                        type: 'bullets',
+                        clickable: true
+                    }
                 });
             });
+            document.addEventListener('DOMContentLoaded', function() {
+                const navLinks = document.querySelectorAll('.nav-link-t');
+                const currentUrl = window.location.href;
 
-            // Load the active link from localStorage on page load
-            const activeLink = localStorage.getItem('activeLink');
-            if (activeLink) {
-                removeActiveClass();
+                // Function to remove 'active' class from all links
+                function removeActiveClass() {
+                    navLinks.forEach(link => {
+                        link.classList.add('navbar-reduce');
+                        link.classList.remove('navbar-trans');
+                        link.classList.remove('active');
+                    });
+                }
+
+                // Add event listeners to each nav link
                 navLinks.forEach(link => {
-                    if (link.href === activeLink) {
+                    // Set the active class based on URL
+                    if (link.href === currentUrl) {
                         link.classList.add('active');
+                        localStorage.setItem('activeLink', link
+                            .href); // Save the active link to localStorage
                     }
-                });
-            }
-        });
 
-    })();
+                    link.addEventListener('click', function() {
+                        removeActiveClass(); // Remove 'active' from all links
+                        this.classList.add('active'); // Add 'active' to the clicked link
+                        this.classList.add('navbar-reduce');
+                        this.classList.remove('navbar-trans');
+                        localStorage.setItem('activeLink', this
+                            .href); // Save the active link to localStorage
+                    });
+                });
+
+                // Load the active link from localStorage on page load
+                const activeLink = localStorage.getItem('activeLink');
+                if (activeLink) {
+                    removeActiveClass();
+                    navLinks.forEach(link => {
+                        if (link.href === activeLink) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+        })();
     </script>
 </body>
 

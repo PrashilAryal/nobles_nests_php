@@ -95,19 +95,19 @@
                     <nav class="nav-footer">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="#">Home</a>
+                                <a href="{{url('/')}}">Home</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">About</a>
+                                <a href="{{url('/about-us')}}">About</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">Property</a>
+                                <a href="{{url('/all-properties')}}">Property</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">Blog</a>
+                                <a href="{{url('/blog')}}">Blog</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">Contact</a>
+                                <a href="{{url('/contact')}}">Contact</a>
                             </li>
                         </ul>
                     </nav>

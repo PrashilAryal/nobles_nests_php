@@ -23,7 +23,9 @@
         <div class="contactContainer propertyContainer" style="background-color:#2e3b52; border-radius: 10px;">
             <!-- <h1 class="propertyTitle">Add Property</h1> -->
             <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                <img src="{{ asset('../images/logo.png') }}" alt="" class="propertyIcon" style="margin-left:0">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('../images/logo.png') }}" alt="" class="propertyIcon" style="margin-left:0">
+                </a>
                 <div
                     style="color:white; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                     <p>Don't have an account?</p>

@@ -9,6 +9,7 @@
     </title>
     <link rel="stylesheet" href="{{ URL::asset('css/admin.css'); }}" />
     <link rel="stylesheet" href="{{ asset('css/recipe.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link
         href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@300;400;900&family=Fira+Sans&family=Ubuntu:wght@300;400;500;700&display=swap"
         rel="stylesheet" />
@@ -77,13 +78,21 @@
                     <span class="title">Go to website</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="{{url('/admin-setting')}}">
                     <span class="icon">
-                        <!-- <ion-icon name="settings-outline"></ion-icon> -->
                         <i class="fa-solid fa-gear"></i>
                     </span>
                     <span class="title">Setting</span>
+                </a>
+            </li> -->
+            <li>
+                <a href="{{url('/blog-upload')}}">
+                    <span class="icon">
+                        <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                        <i class="fa-solid fa-newspaper"></i>
+                    </span>
+                    <span class="title">Blog</span>
                 </a>
             </li>
 

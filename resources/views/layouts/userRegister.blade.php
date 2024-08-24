@@ -26,7 +26,9 @@
             <!-- <h1 class="propertyTitle">Add Property</h1> -->
             <div
                 style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-left:80px">
-                <img src="{{ asset('../images/logo.png') }}" alt="" class="propertyIcon" style="margin-left:0">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('../images/logo.png') }}" alt="" class="propertyIcon" style="margin-left:0">
+                </a>
                 <div
                     style="color:white; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                     <p>Have an account?</p>
@@ -81,9 +83,11 @@
                             <input type="password" id="password_confirmation" name="password_confirmation" required>
                             <span>Confirm Password</span>
                         </div>
-                        <button type="submit" class="button button-primary">
-                            <a class="button-text">Register</a>
-                        </button>
+                        <div class="contactInputBox w50">
+                            <button type="submit" class="button button-primary">
+                                <a class="button-text">Register</a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

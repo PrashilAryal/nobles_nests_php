@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->text('title');
             $table->decimal('total_price', 10, 2);
             $table->decimal('booking_price', 10, 2);
             $table->string('city');
@@ -25,8 +25,12 @@ return new class extends Migration
             $table->float('area');
             $table->integer('bedrooms');
             $table->integer('kitchens');
+            $table->integer('bathrooms');
             $table->string('parking');
             $table->string('type');
+            $table->text('description');
+            $table->text('video_link');
+            $table->text('map_link');
             // End: Features
             $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('is_sold')->default(false);
