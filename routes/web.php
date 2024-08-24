@@ -85,6 +85,12 @@ Route::get('/view-users', [AuthController::class, 'view_user']);
 Route::get('/view-properties', [AuthController::class, 'view_properties']);
 Route::patch('properties/{property}/destroy', [AuthController::class, 'adminDestroyProperty'])->name('properties.adminDestroyProperty')->middleware('auth');
 
+// Route for the search form page
+Route::get('/search', [PropertyController::class, 'search_properties'])->name('search_properties');
+
+// Route for the search results page
+Route::get('/results', [PropertyController::class, 'search_results'])->name('search_results');
+
 Route::get('/transactions', [AuthController::class, 'transactions'])->name('transactions');
 // END: Admin Control
 
