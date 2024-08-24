@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Property;
 use App\Models\User;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 
 class ProfileController extends Controller
@@ -62,8 +65,18 @@ class ProfileController extends Controller
         // if($adminObj->chef_role == 'admin'){
         $users = User::all();
         $properties = Property::all();
+        $messages = Message::all();
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $charges = Charge::all(['limit' => 100]);
+
+        // Filter charges with metadata['site'] matching 'your-site-identifier'
+        $filteredCharges = array_filter($charges->data, function ($charge) {
+            return isset($charge->metadata['site']) && $charge->metadata['site'] === 'NobleNests';
+        });
+        $charges = $filteredCharges;
         // return view('adminpanel', ['chefs'=>$item], ['data'=>$adminObj], ['recipes'=>$recipeList]);
-        return view('admin.adminDashboard', compact('users', 'data', 'properties'));
+        return view('admin.adminDashboard', compact('users', 'data', 'properties', 'messages', 'charges'));
 
         //    }else{
         //         return view('adminlogin');

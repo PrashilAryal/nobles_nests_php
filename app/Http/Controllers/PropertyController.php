@@ -44,7 +44,7 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
 
         $request->validate([
             'title' => 'required|max:255',
@@ -58,10 +58,7 @@ class PropertyController extends Controller
             'kitchens' => 'required|numeric',
             'parking' => 'required|numeric',
             'type' => 'required|string|max:255',
-            'bathrooms' => 'required|numeric',
-            'description' => 'required',
-            'video_link' => 'required',
-            'map_link' => 'required',
+
         ]);
 
         // Create the property
@@ -76,8 +73,8 @@ class PropertyController extends Controller
             'bedrooms' => $request->bedrooms,
             'kitchens' => $request->kitchens,
             'parking' => $request->parking,
-            'bathrooms' => $request->bathrooms,
             'description' => $request->description,
+            'bathrooms' => $request->bathrooms,
             'video_link' => $request->video_link,
             'map_link' => $request->map_link,
             'type' => $request->type,
@@ -249,10 +246,6 @@ class PropertyController extends Controller
             'kitchens' => 'required|numeric',
             'parking' => 'required|numeric',
             'type' => 'required|string|max:255',
-            'bathrooms' => 'required|numeric',
-            'description' => 'required',
-            'video_link' => 'required',
-            'map_link' => 'required',
         ]);
 
         // Update the property

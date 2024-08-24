@@ -63,8 +63,28 @@
                         <span>Parking</span>
                     </div>
                     <div class="contactInputBox w50">
+                        <input type="number" id="bathrooms" name="bathrooms" value="{{ $property->bathrooms }}"
+                            autocomplete="off" required>
+                        <span>Bathrooms</span>
+                    </div>
+                    <div class="contactInputBox w50">
                         <input type="text" id="type" name="type" value="{{ $property->type }}" required>
                         <span>Type</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="video_link" name="video_link" value="{{ $property->video_link }}"
+                            autocomplete="off" required>
+                        <span>Video Link</span>
+                    </div>
+                    <div class="contactInputBox w50">
+                        <input type="text" id="map_link" name="map_link" value="{{ $property->map_link }}"
+                            autocomplete="off" required>
+                        <span>Map Link</span>
+                    </div>
+                    <div class="contactInputBox w100">
+                        <input type="textarea" id="description" name="description" value="{{ $property->description }}"
+                            autocomplete="off" required>
+                        <span>Description</span>
                     </div>
 
                     <div class="contactInputBox w100">

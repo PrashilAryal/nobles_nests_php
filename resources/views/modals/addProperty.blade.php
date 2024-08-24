@@ -76,6 +76,10 @@
                         <span>Map Link</span>
                     </div>
                     <div class="contactInputBox w100">
+                        <input type="textarea" id="description" name="description" autocomplete="off" required>
+                        <span>Description</span>
+                    </div>
+                    <div class="contactInputBox w100">
                         <label for="type">Thumbnail Image</label>
                         <img class="card-img-top" id="output" src="" alt="Property Thumbnail">
                         <input type="file" class="form-control" id="primary_image" name="primary_image"
