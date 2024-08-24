@@ -51,7 +51,7 @@
                             class="form-control form-control-lg form-control-a" placeholder="Area (sq.ft.)">
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-5">
                     <button type="submit" class="button button-primary">
                         <span class="button-text">
                             Search Property
@@ -80,9 +80,6 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/') }}">Home</a>
                 </li>
-                <a class="nav-link" href="{{ route('search_properties') }}">Search</a>
-                <a class="nav-link" href="{{ url('/search') }}">Search</a>
-
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ url('/about-us') }}">About</a>
                 </li>

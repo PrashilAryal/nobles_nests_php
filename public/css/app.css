@@ -1389,6 +1389,22 @@ footer .credits {
 /* END: Property Details */
 
 /* START: Property Form */
+.card-items {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.card-items .card-text {
+    padding: 0 2rem 0 0;
+}
+.search-property-img {
+    height: 180px !important;
+    width: 260px !important;
+}
+.search-property-img img {
+    height: 100%;
+    object-fit: cover;
+}
 .propertyContainer {
     display: flex;
     justify-content: center;

@@ -137,7 +137,8 @@ class PropertyController extends Controller
     }
     public function search_results(Request $request)
     {
-        $query = Property::query();
+        // $query = Property::query();
+        $query = Property::with(['photos', 'users']);
 
         // Apply filters based on the request inputs
         if ($request->filled('title')) {
