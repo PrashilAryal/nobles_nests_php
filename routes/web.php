@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,8 @@ Route::get('/adminDashboard', [ProfileController::class, 'showAdminDashboard'])-
 
 Route::get('/view-users', [AuthController::class, 'view_user']);
 Route::get('/view-properties', [AuthController::class, 'view_properties']);
+Route::get('/blog-upload', [BlogController::class, 'blog_Upload'])->name('blog-Upload');
+Route::post('/blog-store', [BlogController::class, 'store'])->name('blogs.store');
 Route::patch('properties/{property}/destroy', [AuthController::class, 'adminDestroyProperty'])->name('properties.adminDestroyProperty')->middleware('auth');
 
 // Route for the search form page
@@ -99,3 +102,7 @@ Route::get('/transactions', [AuthController::class, 'transactions'])->name('tran
 Route::get('stripe/{id}', [StripeController::class, 'stripe']);
 Route::post('stripe/{id}', [StripeController::class, 'stripePost'])->name('stripe.post');
 // END: Stripe Payment
+
+// START : Blog
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+// END : Blog

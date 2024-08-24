@@ -86,6 +86,15 @@
                     <span class="title">Setting</span>
                 </a>
             </li>
+            <li>
+                <a href="{{url('/blog-upload')}}">
+                    <span class="icon">
+                        <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                        <i class="fa-solid fa-gear"></i>
+                    </span>
+                    <span class="title">blog</span>
+                </a>
+            </li>
 
             <li>
 
@@ -181,24 +190,24 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <script>
-    //Menu toogle
-    let toggle = document.querySelector(".toggle");
-    let navigation = document.querySelector(".navigation");
-    let main = document.querySelector(".main");
+        //Menu toogle
+        let toggle = document.querySelector(".toggle");
+        let navigation = document.querySelector(".navigation");
+        let main = document.querySelector(".main");
 
-    toggle.onclick = function() {
-        navigation.classList.toggle("active");
-        main.classList.toggle("active");
-    };
+        toggle.onclick = function() {
+            navigation.classList.toggle("active");
+            main.classList.toggle("active");
+        };
 
-    //add hovered class in selected list item
-    let list = document.querySelectorAll(".navigation li");
+        //add hovered class in selected list item
+        let list = document.querySelectorAll(".navigation li");
 
-    function activelink() {
-        list.forEach((item) => item.classList.remove("hovered"));
-        this.classList.add("hovered");
-    }
-    list.forEach((item) => item.addEventListener("mouseover", activelink));
+        function activelink() {
+            list.forEach((item) => item.classList.remove("hovered"));
+            this.classList.add("hovered");
+        }
+        list.forEach((item) => item.addEventListener("mouseover", activelink));
     </script>
 </body>
 

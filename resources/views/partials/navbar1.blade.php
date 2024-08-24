@@ -92,7 +92,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link nav-link-t " href="{{ url('/') }}">Blog</a>
+                    <a class="nav-link nav-link-t " href="{{ url('/blog') }}">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-t " href="{{ route('search_properties')}}">Search</a>
