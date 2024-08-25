@@ -38,7 +38,7 @@
             <form action="{{ route('register.store') }}" method="POST">
                 @csrf
                 <div class="contactForm propertyFormContent" style="border-radius: 10px;margin:20px 0 20px 120px;">
-                    <h2>Login</h2>
+                    <h2>Register</h2>
                     @if(Session::has('success'))
                     <div class="messageSentSuccess my-2">
                         <span class="">{{Session::get('success')}}</span><br>

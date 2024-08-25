@@ -422,6 +422,9 @@
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+.property-card .card-img {
+    height: 260px;
+}
 
 .property-card .card-img img {
     border-top-left-radius: 10px;
@@ -541,7 +544,7 @@
     display: flex;
 }
 .search-container {
-    width: 400px;
+    /* width: 400px; */
     height: 40px;
 }
 .search-container-form {
@@ -1403,6 +1406,7 @@ footer .credits {
 }
 .search-property-img img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 .propertyContainer {

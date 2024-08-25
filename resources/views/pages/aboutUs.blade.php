@@ -12,15 +12,35 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-6">
-            <div class="about_image">
+            <div class="about_image" style="height: 460px;">
                 <img src="{{ asset('../images/about-us.jpg') }}" alt="">
             </div>
         </div>
         <div class="col-6">
-            <p class="about_description">Welcome to NobleNests, the premier destination for luxury and premium homes. We
-                specialize in
-                connecting discerning buyers with exceptional properties that define elegance, sophistication, and
-                comfort.</p>
+            <p class="about_description" style="text-align:justify;">
+                Welcome to Noble Nests, the ultimate online destination for luxury and premium real estate. Our platform
+                is designed to bring you a seamless and sophisticated experience, whether you're looking to buy, sell,
+                or explore exclusive properties.<br />
+
+                At Noble Nests, we understand that finding the perfect home is about more than just location—it's about
+                lifestyle, comfort, and the right investment. That's why we've curated a diverse selection of the finest
+                homes in prime locations, from opulent villas and modern penthouses to historic estates and beachfront
+                properties. <br />
+
+                Our website is equipped with advanced search features, allowing you to filter properties by location,
+                price, amenities, and more. With high-quality images, detailed descriptions, and virtual tours, you can
+                explore each property from the comfort of your home. <br />
+
+                For sellers, our platform offers a unique opportunity to showcase your property to a global audience of
+                discerning buyers. We provide all the tools you need to present your home in the best light, from
+                professional photography to comprehensive listing details. <br />
+
+                Whether you're a buyer seeking your dream home or a seller looking to connect with serious buyers, Noble
+                Nests is your trusted partner in the luxury real estate market. We are committed to providing
+                exceptional service and making your real estate journey as smooth and enjoyable as possible.<br />
+
+                Explore our website today and discover the home of your dreams.
+            </p>
         </div>
     </div>
     <div class="row about_text_box mt-5">

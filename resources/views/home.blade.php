@@ -8,8 +8,9 @@
         <div class="hero-banner-search">
             <!-- <input type="text" placeholder="Search"> -->
             <!-- <input type="button" value="Search" class="button button-primary"> -->
-            <div class="search-container">
-                <form action="#" class="d-flex search-container-form">
+            <div class="search-container display-flex justify-content-center">
+                <span>At Noble Nests</span>
+                <!-- <form action="#" class="d-flex search-container-form">
                     <input type="text" placeholder="Search.." name="search" class="search-input">
                     <button type="submit" class="button-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -18,7 +19,7 @@
                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                         </svg>
                     </button>
-                </form>
+                </form> -->
             </div>
         </div>
     </div>
@@ -60,12 +61,24 @@
                             <div class="property-card-price col-6">
                                 <p class="card-text">
                                     ${{ number_format($property->booking_price, 2) }}</p>
-                                <button class="button button-primary">
-                                    <span><span class="button-text">
-
-                                            Book Now
-                                        </span>
+                                <!-- <button class="button button-primary">
+                                    <a class="button-text" href="{{ url('stripe', $property->id) }}">
+                                        Book Now
+                                    </a>
+                                </button> -->
+                                @if($property->is_sold)
+                                <p class="badge bg-primary" style="margin: auto; margin-left:12px;">Booked</p>
+                                @endif
+                                @if(!$property->is_sold)
+                                <button class="button button-primary" style="margin:auto;">
+                                    <!-- <a href="{{ url('stripe', $property->id) }}"
+                                        style="text-decoration: none; color: white">Book
+                                        Now</a> -->
+                                    <a class="button-text" href="{{ url('stripe', $property->id) }}">
+                                        Book Now
+                                    </a>
                                 </button>
+                                @endif
                             </div>
                         </div>
                     </div>
